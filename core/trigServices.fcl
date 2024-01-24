@@ -1,0 +1,83 @@
+# -*- mode: tcl -*-
+#------------------------------------------------------------------------------
+# this file includes all the prolog needed to run the reconstruction
+# at the trigger level and the filters used to make the trigger decision
+#------------------------------------------------------------------------------
+BEGIN_PROLOG
+Trigger : {
+   services: {
+      Reco: {
+         message                    : {
+            destinations :
+            {
+               # a destination which will react to
+               # messages of ERROR or WARNING or
+               # INFO severity, but not DEBUG severity                                      
+               # LogPrint.
+               # (INFO severity is LogInfo or LogVerbatim).
+               log:      {
+                  type:      cout       # type could be cout, cerr, archive, dds, or file.
+                  threshold: INFO       # React to INFO, WARNING, and ERROR
+                  # message severities; ignore LogDebug messages.
+                  categories:
+                  {
+                     ArtReport:           # ArtReport is a category of INFO messages that
+                     # the framework will generate to tell, for example,
+                     # when a next event is started.
+                     {
+                        reportEvery : 1    # start with every one
+                        limit       : 1    # start exponential backoff right away
+                        timespan    : 300  # report every 5min too, as asymmtotic behavior
+                     }
+                     fileAction:
+                     {
+                        limit : -1
+                     }
+                     default:
+                     {
+                        limit : 100
+                     }
+                     ArtSummary:  # allow the path and modules summaries (TrigReport)
+                     {
+                        limit : -1
+                     }
+                     RANDOM : { limit : 0 }
+                     FastCloning : { limit : 0 }
+                     TransientBranch : { limit : 0 }
+                     path : { limit : 0 }
+                     MF_INIT_OK : { limit : 0 }
+                     DeactivatedPath : { limit : 0 }
+                     PathConfiguration : { limit : 0 }
+                     GEOM_MINRANGECUT : { limit : 0 }
+                     GEOM_PARTICLECUT : { limit : 0 }
+                     Configuration : { limit : 0 }
+                     HITS : { limit : 0 }
+                     COSMIC_STEPPOINTS : { limit : 0 }
+                     Summary : { limit : 0 }
+                     INFO : { limit : 0 }
+                  } # end categories
+               }
+               
+         }
+         GeometryService            : {
+            inputFile           : "Offline/Mu2eG4/geom/geom_common.txt"
+            bFieldFile          : "Offline/Mu2eG4/geom/bfgeom_v01.txt"
+            simulatedDetector   : { tool_type: "Mu2e" }
+         }
+         ConditionsService          : { conditionsfile : "Offline/ConditionsService/data/conditions_01.txt"      }
+            GlobalConstantsService     : { inputFile      : "Offline/GlobalConstantsService/data/globalConstants_01.txt" }
+            DbService                  : DbEmpty : {
+               # connect to the actual database
+               #purpose :  "TRK_TEST"
+               #version :  "v2_0"
+               dbName : "mu2e_conditions_prd"
+               # take all database tables from local text file
+               purpose :  "EMPTY"
+               version :  ""
+               #textFile : ["table.txt"] #this is the local file that otsdaq will download at the begin run!
+               verbose : 0
+           }
+         ProditionsService: @local::Proditions
+      }
+   }
+}
