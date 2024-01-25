@@ -21,5 +21,6 @@ This directory houses the following scripts:
     4. the lumiLogger: `trigLumiLoggerConfig.fcl`, `trigLumiLoggerMenu.fcl`
  It is also possible to specify only a specific event-mode in the trigger menu by using the option `-evtMode`; the possible options are: `all`, `OnSpill` and `OffSpill`.
  It is also possible to process a customized trigger-menu json file by using the option `-mf`. 
+
 An example of command line is the following: 
 `python mu2e_trig_config/python/generateMenuFromJSON.py -mf mu2e_trig_config/data/physMenu.json -o gen -evtMode all`
