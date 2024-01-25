@@ -10,7 +10,7 @@ The main area houses a series of files used to configure the Online reconstructi
 - `trigDigiInputEpilog.fcl`: used only for Offline tests where the inout data are in a Digi format (not Fragments)
 
 ## data
-This directory contains the `trigConf.json` file that organizes in a single JSON file the configuration of the several components needed to run the `art`-based steps of the TDAQ state machine: Online reconstruction, trigger selection, dataloggers, DQM
+This directory contains the Menu configuration files that organize in a single JSON file the configuration of the several components needed to run the `art`-based steps of the TDAQ state machine: Online reconstruction, trigger selection, dataloggers, DQM
 
 ## python
 This directory houses the following scripts:
@@ -21,3 +21,5 @@ This directory houses the following scripts:
     4. the lumiLogger: `trigLumiLoggerConfig.fcl`, `trigLumiLoggerMenu.fcl`
  It is also possible to specify only a specific event-mode in the trigger menu by using the option `-evtMode`; the possible options are: `all`, `OnSpill` and `OffSpill`.
  It is also possible to process a customized trigger-menu json file by using the option `-mf`. 
+An example of command line is the following: 
+`python mu2e_trig_config/python/generateMenuFromJSON.py -mf mu2e_trig_config/data/physMenu.json -o gen -evtMode all`
