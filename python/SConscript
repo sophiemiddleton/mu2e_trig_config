@@ -22,14 +22,19 @@ sys.dont_write_bytecode = wrtSave
 # run like this, it just generates the source and target file listss
 menus      = ["physMenu","extrPosMenu"]
 evtModes   = ["OnSpill","OffSpill","all"]
-muse_w_dir = os.environ['MUSE_WORK_DIR']
-muse_b_dir = os.environ['MUSE_BUILD_DIR']
 for m in menus:
-    #sources,targets,command = generateMenuFromJSON.generate(['-mf','$MUSE_BUILD_DIR/mu2e_trig_config/data/{}.json'.format(m),'-o','$MUSE_BUILD_DIR/mu2e_trig_config/gen','-evtMode','OnSpill'])
     for evt in evtModes:
-        generateMenuFromJSON.generate(['-mf',muse_w_dir+'/mu2e_trig_config/data/{}.json'.format(m),'-o',muse_b_dir+'/mu2e_trig_config/gen','-evtMode',evt])
-    # this schedules it to run again to make the files
-    #helper.make_generic(sources,targets,command+" -c "+m)
+        muse_w_dir = os.environ['MUSE_WORK_DIR']
+        muse_b_dir = os.environ['MUSE_BUILD_DIR']
+        menu_file  = muse_w_dir+'/mu2e_trig_config/data/{}.json'.format(m)
+        out_dir    = muse_b_dir+'/mu2e_trig_config'
+        print("PROCESSING MENU FILE: {}".format(menu_file))
+        sources, targets, command = generateMenuFromJSON.generateOffline(menu_file, 
+                                                                         evt,
+                                                                         out_dir,
+                                                                         True)
+        # this schedules it to run again to make the files
+        helper.make_generic(sources,targets,command+" -mf {} -o {}/gen -evtMode {}".format(menu_file, out_dir, evt))
 
 
 # this tells emacs to view this file in python mode.
