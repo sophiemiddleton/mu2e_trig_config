@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+#
+# Original author Rob Kutschke.
+#
+
+# prevent creating pycache in repo area
+import sys
+wrtSave = sys.dont_write_bytecode
+sys.dont_write_bytecode = True
+
+import os
+Import('env')
+
+Import('mu2e_helper')
+helper = mu2e_helper(env)
+
+# this python code generates Trigger fcl in gen/
+import generateMenuFromJSON
+
+sys.dont_write_bytecode = wrtSave
+
+# run like this, it just generates the source and target file listss
+menus      = ["physMenu","extrPosMenu"]
+evtModes   = ["OnSpill","OffSpill","all"]
+muse_w_dir = os.environ['MUSE_WORK_DIR']
+muse_b_dir = os.environ['MUSE_BUILD_DIR']
+for m in menus:
+    #sources,targets,command = generateMenuFromJSON.generate(['-mf','$MUSE_BUILD_DIR/mu2e_trig_config/data/{}.json'.format(m),'-o','$MUSE_BUILD_DIR/mu2e_trig_config/gen','-evtMode','OnSpill'])
+    for evt in evtModes:
+        generateMenuFromJSON.generate(['-mf',muse_w_dir+'/mu2e_trig_config/data/{}.json'.format(m),'-o',muse_b_dir+'/mu2e_trig_config/gen','-evtMode',evt])
+    # this schedules it to run again to make the files
+    #helper.make_generic(sources,targets,command+" -c "+m)
+
+
+# this tells emacs to view this file in python mode.
+# Local Variables:
+# mode:python
+# End:

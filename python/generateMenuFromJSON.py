@@ -150,8 +150,34 @@ def generateMenu(args,  dictMenu, menuName, dictStreams, proc_name):
 
 
 
-def generate(args):
-    
+#def generate(args):
+def generate(raw_args=None):
+    #--------------------------------------------------------------------------------
+    parser = ArgumentParser()
+    parser.add_argument("-mf", "--menu-file",
+                        dest="menuFile", default="data/physMenu.json",
+                        help="Input Menu file")
+    parser.add_argument("-q", "--quiet",
+                        action="store_false", dest="verbose", default=True,
+                        help="don't print status messages to stdout")
+    parser.add_argument("-o", "--outdir",
+                        dest="outdir", default="gen",
+                        help="Outout directory")
+    parser.add_argument("-evtMode", "--event-mode",dest="evtMode",
+                        default="all",
+                        help="Specify a single event mode if you want a single-event-mode Menu: OnSpill, OffSpill. The default is 'all'")
+
+    args = parser.parse_args(raw_args)
+
+    os.system("mkdir -p {}".format(args.outdir))
+
+    #check the event mode
+    allowed_evtModes = ['OnSpill', 'OffSpill', 'all']
+    if args.evtMode not in allowed_evtModes:
+        print("[generateMenuFromJSON] EVENT-MODE {} NOT ALLOWED! THE POSSIBLE OPTIONS ARE: {}".format(args.evtMode, allowed_evtModes))
+        exit(1)
+   
+    #--------------------------------------------------------------------------------
     tag = args.menuFile.split('/')[-1].split('.')[0]
 
     with open(args.menuFile) as f:
@@ -192,28 +218,29 @@ def generate(args):
 
 
 if __name__ == "__main__":
-    parser = ArgumentParser()
-    parser.add_argument("-mf", "--menu-file",
-                        dest="menuFile", default="data/physMenu.json",
-                        help="Input Menu file")
-    parser.add_argument("-q", "--quiet",
-                        action="store_false", dest="verbose", default=True,
-                        help="don't print status messages to stdout")
-    parser.add_argument("-o", "--outdir",
-                        dest="outdir", default="gen",
-                        help="Outout directory")
-    parser.add_argument("-evtMode", "--event-mode",dest="evtMode",
-                        default="all",
-                        help="Specify a single event mode if you want a single-event-mode Menu: OnSpill, OffSpill. The default is 'all'")
+    # parser = ArgumentParser()
+    # parser.add_argument("-mf", "--menu-file",
+    #                     dest="menuFile", default="data/physMenu.json",
+    #                     help="Input Menu file")
+    # parser.add_argument("-q", "--quiet",
+    #                     action="store_false", dest="verbose", default=True,
+    #                     help="don't print status messages to stdout")
+    # parser.add_argument("-o", "--outdir",
+    #                     dest="outdir", default="gen",
+    #                     help="Outout directory")
+    # parser.add_argument("-evtMode", "--event-mode",dest="evtMode",
+    #                     default="all",
+    #                     help="Specify a single event mode if you want a single-event-mode Menu: OnSpill, OffSpill. The default is 'all'")
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
     
-    os.system("mkdir -p {}".format(args.outdir))
+    # os.system("mkdir -p {}".format(args.outdir))
     
     #check the event mode
-    allowed_evtModes = ['OnSpill', 'OffSpill', 'all']
-    if args.evtMode not in allowed_evtModes:
-        print("[generateMenuFromJSON] EVENT-MODE {} NOT ALLOWED! THE POSSIBLE OPTIONS ARE: {}".format(args.evtMode, allowed_evtModes))
-        exit(1)
+    # allowed_evtModes = ['OnSpill', 'OffSpill', 'all']
+    # if args.evtMode not in allowed_evtModes:
+    #     print("[generateMenuFromJSON] EVENT-MODE {} NOT ALLOWED! THE POSSIBLE OPTIONS ARE: {}".format(args.evtMode, allowed_evtModes))
+    #     exit(1)
         
-    generate(args)
+    #generate(args)
+    generate()
