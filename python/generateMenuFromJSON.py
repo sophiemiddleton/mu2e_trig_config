@@ -12,7 +12,7 @@ def capitalize(word):
     nn = word[0].upper()
     return nn + word[nLetters:]
 
-def generateLogger(evtMode, outdir, dictLog, logName, dictStreams):
+def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuild):
     name_app = '.fcl'
     if evtMode != 'all':
         name_app = '_'+evtMode+'.fcl'
@@ -20,8 +20,9 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams):
     loggerFileName       = outdir+"/"+logName+name_app
     loggerConfigFileName = outdir+"/"+logName+'Config'+name_app
    
-    os.system("chmod 755 {}".format(loggerConfigFileName))
-    os.system("chmod 755 {}".format(loggerFileName))
+    if isOfflineBuild == False:
+        os.system("chmod 755 {}".format(loggerConfigFileName))
+        os.system("chmod 755 {}".format(loggerFileName))
     loggerMenu   = open(loggerFileName, 'w') 
     loggerConfig = open(loggerConfigFileName, 'w') 
     
@@ -66,8 +67,9 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams):
     loggerMenu.write("}\n")
     loggerMenu.close()
 
-    os.system("chmod 444 {}".format(loggerConfigFileName))
-    os.system("chmod 444 {}".format(loggerFileName))
+    if isOfflineBuild==False:
+        os.system("chmod 444 {}".format(loggerConfigFileName))
+        os.system("chmod 444 {}".format(loggerFileName))
 
     return [loggerFileName, loggerConfigFileName]
 
@@ -76,15 +78,16 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams):
 ##
 ##
 ################################################################################
-def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name):
+def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, isOfflineBuild):
     name_app = '.fcl'
     if evtMode != 'all':
         name_app = '_'+evtMode+'.fcl'
     trigMenuFileName = outdir+"/"+menuName+name_app
     psConfigFileName = outdir+"/"+menuName+'PSConfig'+name_app
     
-    os.system("chmod 755 {}".format(trigMenuFileName))
-    os.system("chmod 755 {}".format(psConfigFileName))
+    if isOfflineBuild==False:
+        os.system("chmod 755 {}".format(trigMenuFileName))
+        os.system("chmod 755 {}".format(psConfigFileName))
 
     print("trigMenuFileName: {}".format(trigMenuFileName))
     trigMenu = open(trigMenuFileName, 'w')
@@ -148,8 +151,9 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name):
     trigMenu.write("}\n")
     trigMenu.close()
     
-    os.system("chmod 444 {}".format(trigMenuFileName))
-    os.system("chmod 444 {}".format(psConfigFileName))
+    if isOfflineBuild==False:
+        os.system("chmod 444 {}".format(trigMenuFileName))
+        os.system("chmod 444 {}".format(psConfigFileName))
 
     return [psConfigFileName, trigMenuFileName]
 
@@ -239,21 +243,21 @@ def generateOffline(menuFile, evtMode, outdir, verbose=False):
 
         dict_trkcal_triggers = conf['trigger_paths']
         trkcal_proc_name     = conf['trkcal_filter_process_name']
-        targetFiles += generateMenu(evtMode, projectDir, dict_trkcal_triggers, 'trig_'+tag, data_streams, trkcal_proc_name)
+        targetFiles += generateMenu(evtMode, projectDir, dict_trkcal_triggers, 'trig_'+tag, data_streams, trkcal_proc_name, True)
         print("[generateMenuJSON] DATA STREAMS FOUND: {}".format(data_streams))        
 
         dict_agg_triggers = conf['agg_trigger_paths']
         add_proc_name     = conf['crv_agg_process_name']
-        targetFiles += generateMenu(evtMode, projectDir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name)
+        targetFiles += generateMenu(evtMode, projectDir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name, True)
 
         #now produce the logger menus
         dict_logger = conf['dataLogger_streams']
-        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLogger_'+tag, data_streams)        
+        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLogger_'+tag, data_streams, True)        
         #
         dict_logger = conf['lumiLogger_streams']
         lumi_streams =  {}
         lumi_streams['lumi'] = []
-        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLumiLogger_'+tag, lumi_streams)
+        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLumiLogger_'+tag, lumi_streams, True)
         
     return sourceFiles, targetFiles, "python "+srcDir+"python/generateMenuFromJSON.py"
 
