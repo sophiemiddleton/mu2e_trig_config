@@ -12,7 +12,7 @@ def capitalize(word):
     nn = word[0].upper()
     return nn + word[nLetters:]
 
-def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuild):
+def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuild=False, doIt=True, verbose=False):
     name_app = '.fcl'
     if evtMode != 'all':
         name_app = '_'+evtMode+'.fcl'
@@ -23,12 +23,14 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
     if isOfflineBuild == False:
         os.system("chmod 755 {}".format(loggerConfigFileName))
         os.system("chmod 755 {}".format(loggerFileName))
-    loggerMenu   = open(loggerFileName, 'w') 
-    loggerConfig = open(loggerConfigFileName, 'w') 
+    if doIt == True:
+        loggerMenu   = open(loggerFileName, 'w') 
+        loggerConfig = open(loggerConfigFileName, 'w') 
     
     tagName = capitalize(logName)
     
-    loggerConfig.write(tagName+"Config: {\n")
+    if doIt == True:
+        loggerConfig.write(tagName+"Config: {\n")
  
     
     list_of_logger_streams = []
@@ -40,32 +42,38 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
         streamName = streamName+"Output"
         list_of_logger_streams.append(streamName)
         #
-        loggerConfig.write('   {}:'.format(streamName)+' { \n')
-        loggerConfig.write('      module_type: RootDAQOutput \n')
-        loggerConfig.write('      SelectEvents : {}\n'.format(json.dumps(dictStreams[k])))
-        loggerConfig.write('      maxSubRuns   : 1\n')
-        loggerConfig.write('      fileName     : "{}.art\"\n'.format(k))
-        loggerConfig.write('   }\n\n')
-    loggerConfig.write("}\n")
-    loggerConfig.close()
+        if doIt == True:
+            loggerConfig.write('   {}:'.format(streamName)+' { \n')
+            loggerConfig.write('      module_type: RootDAQOutput \n')
+            loggerConfig.write('      SelectEvents : {}\n'.format(json.dumps(dictStreams[k])))
+            loggerConfig.write('      maxSubRuns   : 1\n')
+            loggerConfig.write('      fileName     : "{}.art\"\n'.format(k))
+            loggerConfig.write('   }\n\n')
+    if doIt == True:
+        loggerConfig.write("}\n")
+        loggerConfig.close()
      
-    loggerMenu.write(tagName+"Outputs: {\n")
-    loggerMenu.write("  outputs: [")
+    if doIt == True:
+        loggerMenu.write(tagName+"Outputs: {\n")
+        loggerMenu.write("  outputs: [")
     for i in range(len(list_of_logger_streams)):
         k = list_of_logger_streams[i]
         if i!= len(list_of_logger_streams)-1: 
-            loggerMenu.write("{},".format(k))
+            if doIt == True:
+                loggerMenu.write("{},".format(k))
         else:
-            loggerMenu.write("{}".format(k))
+            if doIt == True:
+                loggerMenu.write("{}".format(k))
     #
-    print("[generateLogger] {} OUTPUT PATHS FOUND (): {}".format(logName, len(list_of_logger_streams), list_of_logger_streams))
-    loggerMenu.write("]\n")
-    loggerMenu.write("}\n")
-
-    loggerMenu.write(tagName+"Menu: {\n")
-    loggerMenu.write("  end_paths: [ outputs ] \n")
-    loggerMenu.write("}\n")
-    loggerMenu.close()
+    if verbose==True: print("[generateLogger] {} OUTPUT PATHS FOUND (): {}".format(logName, len(list_of_logger_streams), list_of_logger_streams))
+    if doIt == True:
+        loggerMenu.write("]\n")
+        loggerMenu.write("}\n")
+    
+        loggerMenu.write(tagName+"Menu: {\n")
+        loggerMenu.write("  end_paths: [ outputs ] \n")
+        loggerMenu.write("}\n")
+        loggerMenu.close()
 
     if isOfflineBuild==False:
         os.system("chmod 444 {}".format(loggerConfigFileName))
@@ -78,7 +86,7 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
 ##
 ##
 ################################################################################
-def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, isOfflineBuild):
+def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, isOfflineBuild, doIt=True, verbose=False):
     name_app = '.fcl'
     if evtMode != 'all':
         name_app = '_'+evtMode+'.fcl'
@@ -89,14 +97,16 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
         os.system("chmod 755 {}".format(trigMenuFileName))
         os.system("chmod 755 {}".format(psConfigFileName))
 
-    print("trigMenuFileName: {}".format(trigMenuFileName))
-    trigMenu = open(trigMenuFileName, 'w')
-    psConfig = open(psConfigFileName, 'w')
+    if verbose==True: print("trigMenuFileName: {}".format(trigMenuFileName))
+    if doIt == True:
+        trigMenu = open(trigMenuFileName, 'w')
+        psConfig = open(psConfigFileName, 'w')
     
     tag = capitalize(menuName)
-    trigMenu.write(tag+": {\n")
-    trigMenu.write("  trigger_paths: [\n")
-    psConfig.write(tag+"PSConfig: {\n")
+    if doIt == True:
+        trigMenu.write(tag+": {\n")
+        trigMenu.write("  trigger_paths: [\n")
+        psConfig.write(tag+"PSConfig: {\n")
   
     list_of_calo_trk_paths = []
     for k in dictMenu:
@@ -113,15 +123,18 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
     for i in range(len(list_of_calo_trk_paths)):
         path = list_of_calo_trk_paths[i]
         if i!= len(list_of_calo_trk_paths)-1:
-            trigMenu.write('     "{}:{}",\n'.format(dictMenu[path]['bit'], path))
+            if doIt == True:
+                trigMenu.write('     "{}:{}",\n'.format(dictMenu[path]['bit'], path))
         else:
-            trigMenu.write('     "{}:{}"\n'.format(dictMenu[path]['bit'], path))
+            if doIt == True:
+                trigMenu.write('     "{}:{}"\n'.format(dictMenu[path]['bit'], path))
         #
         vv=path.split("_")
         streamName = vv[0]
         for i in range(1,len(vv)): streamName = streamName + capitalize(vv[i])
-        psConfig.write("   {}PS:".format(streamName)+" { \n")
-        psConfig.write("      module_type: PrescaleEvent \n")
+        if doIt == True:
+            psConfig.write("   {}PS:".format(streamName)+" { \n")
+            psConfig.write("      module_type: PrescaleEvent \n")
         evtModes = dictMenu[path]['eventModeConfig']
         psInput = "[ "
         notFirst = False
@@ -132,8 +145,9 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
             notFirst = True
         psInput += " ]"
         
-        psConfig.write("      eventModeConfig : {}\n".format(psInput))
-        psConfig.write("}\n\n")
+        if doIt == True:
+            psConfig.write("      eventModeConfig : {}\n".format(psInput))
+            psConfig.write("}\n\n")
         
         vv=dictMenu[path]['eventModeConfig']
         for dd in vv:
@@ -143,13 +157,14 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
                     dictStreams[s].append(trg_path)
         
     #
-    print("[generateMenu] {} TRIGGER PATHS FOUND (): {}".format(menuName, len(list_of_calo_trk_paths), list_of_calo_trk_paths)) 
+    if verbose==True: print("[generateMenu] {} TRIGGER PATHS FOUND (): {}".format(menuName, len(list_of_calo_trk_paths), list_of_calo_trk_paths)) 
     #
-    psConfig.write("}\n")
-    psConfig.close()
-    trigMenu.write("  ]\n")
-    trigMenu.write("}\n")
-    trigMenu.close()
+    if doIt == True:
+        psConfig.write("}\n")
+        psConfig.close()
+        trigMenu.write("  ]\n")
+        trigMenu.write("}\n")
+        trigMenu.close()
     
     if isOfflineBuild==False:
         os.system("chmod 444 {}".format(trigMenuFileName))
@@ -162,7 +177,7 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
 # 
 #
 #--------------------------------------------------------------------------------
-def generateOffline(menuFile, evtMode, outdir, verbose=False):
+def generateOffline(menuFile, evtMode, outdir, doIt=False, verbose=False):
 
 
     tag = menuFile.split('/')[-1].split('.')[0]
@@ -236,28 +251,28 @@ def generateOffline(menuFile, evtMode, outdir, verbose=False):
     with open(menuFile) as f:
         conf = json.load(f)
         keys = conf.keys()
-        print("[generateMenuJSON] KEYS FOUND: {}".format(keys))
+        if verbose==True: print("[generateMenuJSON] KEYS FOUND: {}".format(keys))
         data_streams = {}
         for k in conf['dataLogger_streams']:
             data_streams[k] = []
 
         dict_trkcal_triggers = conf['trigger_paths']
         trkcal_proc_name     = conf['trkcal_filter_process_name']
-        targetFiles += generateMenu(evtMode, projectDir, dict_trkcal_triggers, 'trig_'+tag, data_streams, trkcal_proc_name, True)
-        print("[generateMenuJSON] DATA STREAMS FOUND: {}".format(data_streams))        
+        targetFiles += generateMenu(evtMode, projectDir, dict_trkcal_triggers, 'trig_'+tag, data_streams, trkcal_proc_name, True, doIt, verbose)
+        if verbose==True: print("[generateMenuJSON] DATA STREAMS FOUND: {}".format(data_streams))        
 
         dict_agg_triggers = conf['agg_trigger_paths']
         add_proc_name     = conf['crv_agg_process_name']
-        targetFiles += generateMenu(evtMode, projectDir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name, True)
+        targetFiles += generateMenu(evtMode, projectDir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name, True, doIt, verbose)
 
         #now produce the logger menus
         dict_logger = conf['dataLogger_streams']
-        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLogger_'+tag, data_streams, True)        
+        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLogger_'+tag, data_streams, True, doIt, verbose)        
         #
         dict_logger = conf['lumiLogger_streams']
         lumi_streams =  {}
         lumi_streams['lumi'] = []
-        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLumiLogger_'+tag, lumi_streams, True)
+        targetFiles += generateLogger(evtMode, projectDir, dict_logger, 'trigLumiLogger_'+tag, lumi_streams, True, doIt, verbose)
         
     return sourceFiles, targetFiles, "python "+srcDir+"python/generateMenuFromJSON.py"
 
@@ -284,29 +299,28 @@ def generate(args):
     with open(args.menuFile) as f:
         conf = json.load(f)
         keys = conf.keys()
-        print("[generateMenuJSON] KEYS FOUND: {}".format(keys))
+        if args.verbose==True: print("[generateMenuJSON] KEYS FOUND: {}".format(keys))
         data_streams = {}
         for k in conf['dataLogger_streams']:
             data_streams[k] = []
 
         dict_trkcal_triggers = conf['trigger_paths']
         trkcal_proc_name     = conf['trkcal_filter_process_name']
-        generateMenu(args.evtMode, args.outdir, dict_trkcal_triggers, 'trig_'+tag, data_streams, trkcal_proc_name)
-        print("[generateMenuJSON] DATA STREAMS FOUND: {}".format(data_streams))        
+        generateMenu(args.evtMode, args.outdir, dict_trkcal_triggers, 'trig_'+tag, data_streams, trkcal_proc_name, False, True, args.verbose)
+        if args.verbose==True: print("[generateMenuJSON] DATA STREAMS FOUND: {}".format(data_streams))        
 
         dict_agg_triggers = conf['agg_trigger_paths']
         add_proc_name     = conf['crv_agg_process_name']
-        generateMenu(args.evtMode, args.outdir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name)
+        generateMenu(args.evtMode, args.outdir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name, False, True, args.verbose, False, True, args.verbose)
 
         #now produce the logger menus
         dict_logger = conf['dataLogger_streams']
-        generateLogger(args.evtMode, args.outdir, dict_logger, 'trigLogger_'+tag, data_streams)        
+        generateLogger(args.evtMode, args.outdir, dict_logger, 'trigLogger_'+tag, data_streams, False, True, args.verbose)
         #
         dict_logger = conf['lumiLogger_streams']
         lumi_streams =  {}
         lumi_streams['lumi'] = []
-        generateLogger(args.evtMode, args.outdir, dict_logger, 'trigLumiLogger_'+tag, lumi_streams)
-        
+        generateLogger(args.evtMode, args.outdir, dict_logger, 'trigLumiLogger_'+tag, lumi_streams, False, True, args.verbose)
    
     # psConfig.write("}\n")
     # psConfig.close()
