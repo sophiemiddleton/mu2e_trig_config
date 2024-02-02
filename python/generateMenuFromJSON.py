@@ -311,7 +311,7 @@ def generate(args):
 
         dict_agg_triggers = conf['agg_trigger_paths']
         add_proc_name     = conf['crv_agg_process_name']
-        generateMenu(args.evtMode, args.outdir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name, False, True, args.verbose, False, True, args.verbose)
+        generateMenu(args.evtMode, args.outdir, dict_agg_triggers, 'agg_'+tag, data_streams, add_proc_name, False, True, args.verbose)
 
         #now produce the logger menus
         dict_logger = conf['dataLogger_streams']
