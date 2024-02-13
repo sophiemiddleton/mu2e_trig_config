@@ -1,0 +1,17 @@
+
+BEGIN_PROLOG
+
+TrigRecoSequences:{
+   #tracker hit reco/flagging
+   trkPrepareHits     : [ TTmakeSH, TTmakePH, TTmakeSTH, TTflagBkgHits ]
+   ##   trkPrepareHitsUCC  : [ TTmakeSHUCC, TTmakePHUCC, TTflagBkgHitsUCC ]
+   trkPrepareHitsFast : [ TTmakeSH, TTmakePH ]
+   ##   trkSPrepareHits    : [ TTmakeSH, TTSmakePH, TTmakeSTH ,TTSflagBkgHits ]
+   #calorimeter reco
+   calPrepareHits     : [ CaloHitMakerFast ]
+   calReco            : [ CaloHitMakerFast, CaloClusterFast ]
+   #
+   artFragmentsGen    : [ artFragFromDTCEvents ]
+}
+
+END_PROLOG
