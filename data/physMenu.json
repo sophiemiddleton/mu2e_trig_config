@@ -201,7 +201,7 @@
         "physics_minBias"    : { "enabled" : 1 },
         "physics_trk_calib"  : { "enabled" : 1 },
         "physics_calo_calib" : { "enabled" : 1 },
-        "coscmics_main"      : { "enabled" : 1 },
+        "cosmics_main"      : { "enabled" : 1 },
         "dqm_trigger"        : { "enabled" : 1 }
     },
     
