@@ -1,0 +1,61 @@
+#------------------------------------------------------------------------------
+# runs the trigger reco 
+#------------------------------------------------------------------------------
+#  > mu2e --config mu2e_trig_config/test/triggerTest.fcl --source "your digis file" --TFile globalFilter.root --nevts=100
+#include "Offline/fcl/minimalMessageService.fcl"
+#include "Offline/fcl/standardServices.fcl"
+
+#include "mu2e_trig_config/core/trigProducers.fcl"
+#include "mu2e_trig_config/core/trigFilters.fcl"
+#include "mu2e_trig_config/core/trigRecoSequences.fcl"
+#include "mu2e_trig_config/core/trigSequences.fcl"
+
+#include "mu2e_trig_config/gen/trig_physMenuPSConfig_OnSpill.fcl"
+#include "mu2e_trig_config/gen/trig_physMenu_OnSpill.fcl"
+
+
+process_name : globalTrigger
+
+source :
+{
+   module_type : RootInput
+   inputCommands: [ "keep  *_*_*_*",
+      "drop  *ComboHitCollection_*_*_*"]
+}
+# we don't need any simulation services for this job
+# services : @local::Services.Reco
+
+services : @local::Services.Reco
+
+# timing information
+services.TimeTracker : {
+   dbOutput : {
+      filename : ""
+      #	filename : "runGlobalTrigger.db" #uncomment to create the .db output
+      overwrite : true
+   }
+}
+
+services.scheduler.wantSummary: true
+TrigRecoSequences.artFragmentsGen            : [ @nil ]
+
+physics : {
+
+   @table::TrigSequences
+   #@table::TrigLoggerOutputs
+
+   producers : { @table::TrigProducers.producers }
+   filters   : { 
+      @table::TrigFilters.filters   
+      @table::Trig_physMenuPSConfig
+   }
+}
+
+services.TFileService.fileName : "test.root"
+physics.trigger_paths : [@sequence::Trig_physMenu.trigger_paths]
+
+#include "mu2e_trig_config/core/trigDigiInputsEpilog.fcl"
+
+services.DbService.purpose: MDC2020_best
+services.DbService.version: v1_1
+services.DbService.verbose : 2
