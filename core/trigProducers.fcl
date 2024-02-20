@@ -717,7 +717,7 @@ TrigCprProducers : {
       ModuleSettings   : {
          @table::Mu2eKinKalTrigger.LOOPHELIX 
          HelixSeedCollections: ["TTCalHelixMergerDeP"]
-         FitParticle         : 11
+         FitParticle         : -11
       }
       UsePDGCharge     : true
       FitDirection     : 0
