@@ -20,9 +20,9 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
     loggerFileName       = outdir+"/"+logName+name_app
     loggerConfigFileName = outdir+"/"+logName+'Config'+name_app
    
-    if isOfflineBuild == False:
-        os.system("chmod 755 {}".format(loggerConfigFileName))
-        os.system("chmod 755 {}".format(loggerFileName))
+    # if isOfflineBuild == False:
+    #     os.system("chmod 755 {}".format(loggerConfigFileName))
+    #     os.system("chmod 755 {}".format(loggerFileName))
     if doIt == True:
         loggerMenu   = open(loggerFileName, 'w') 
         loggerConfig = open(loggerConfigFileName, 'w') 
@@ -75,9 +75,9 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
         loggerMenu.write("}\n")
         loggerMenu.close()
 
-    if isOfflineBuild==False:
-        os.system("chmod 444 {}".format(loggerConfigFileName))
-        os.system("chmod 444 {}".format(loggerFileName))
+    # if isOfflineBuild==False:
+    #     os.system("chmod 444 {}".format(loggerConfigFileName))
+    #     os.system("chmod 444 {}".format(loggerFileName))
 
     return [loggerFileName, loggerConfigFileName]
 
@@ -93,9 +93,9 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
     trigMenuFileName = outdir+"/"+menuName+name_app
     psConfigFileName = outdir+"/"+menuName+'PSConfig'+name_app
     
-    if isOfflineBuild==False:
-        os.system("chmod 755 {}".format(trigMenuFileName))
-        os.system("chmod 755 {}".format(psConfigFileName))
+    # if isOfflineBuild==False:
+    #     os.system("chmod 755 {}".format(trigMenuFileName))
+    #     os.system("chmod 755 {}".format(psConfigFileName))
 
     if verbose==True: print("trigMenuFileName: {}".format(trigMenuFileName))
     if doIt == True:
@@ -166,9 +166,9 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
         trigMenu.write("}\n")
         trigMenu.close()
     
-    if isOfflineBuild==False:
-        os.system("chmod 444 {}".format(trigMenuFileName))
-        os.system("chmod 444 {}".format(psConfigFileName))
+    # if isOfflineBuild==False:
+    #     os.system("chmod 444 {}".format(trigMenuFileName))
+    #     os.system("chmod 444 {}".format(psConfigFileName))
 
     return [psConfigFileName, trigMenuFileName]
 
