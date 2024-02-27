@@ -30,6 +30,7 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
     tagName = capitalize(logName)
     
     if doIt == True:
+        loggerConfig.write("BEGIN_PROLOG\n")        
         loggerConfig.write(tagName+"Config: {\n")
  
     
@@ -51,9 +52,11 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
             loggerConfig.write('   }\n\n')
     if doIt == True:
         loggerConfig.write("}\n")
+        loggerConfig.write("END_PROLOG\n")
         loggerConfig.close()
      
     if doIt == True:
+        loggerMenu.write("BEGIN_PROLOG\n")
         loggerMenu.write(tagName+"Outputs: {\n")
         loggerMenu.write("  outputs: [")
     for i in range(len(list_of_logger_streams)):
@@ -73,6 +76,7 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
         loggerMenu.write(tagName+"Menu: {\n")
         loggerMenu.write("  end_paths: [ outputs ] \n")
         loggerMenu.write("}\n")
+        loggerMenu.write("END_PROLOG\n")
         loggerMenu.close()
 
     if isOfflineBuild==False:
@@ -104,8 +108,10 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
     
     tag = capitalize(menuName)
     if doIt == True:
+        trigMenu.write("BRGIN_PROLOG\n")
         trigMenu.write(tag+": {\n")
         trigMenu.write("  trigger_paths: [\n")
+        psConfig.write("BRGIN_PROLOG\n")
         psConfig.write(tag+"PSConfig: {\n")
   
     list_of_calo_trk_paths = []
@@ -161,9 +167,11 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
     #
     if doIt == True:
         psConfig.write("}\n")
+        psConfig.write("END_PROLOG\n")        
         psConfig.close()
         trigMenu.write("  ]\n")
         trigMenu.write("}\n")
+        trigMenu.write("END_PROLOG\n")        
         trigMenu.close()
     
     if isOfflineBuild==False:
