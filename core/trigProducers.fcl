@@ -17,7 +17,7 @@ TrigDAQProducers : {
       makeSTMFrag: 0
       makeTrkFrag: 1
       module_type: "ArtFragmentsFromDTCEvents"
-   }  
+   }
 
    binaryOutput: {
       #      module_type     : BinaryPacketsFromDataBlocks
@@ -43,9 +43,9 @@ TrigDAQProducers : {
       #         maxDMABlockSize : 32000
       #         bufferSize      : 1000
    }
-   
-   
-   
+
+
+
 }
 
 TrigCalProducers : {
@@ -65,7 +65,7 @@ TrigCalProducers : {
       caphriEDepMax : 5.0 #MeV
       caphriEDepMin : 1.0 #MeV
    }
-   
+
    CaloHitMakerFastFromDigi: {
       ProtonBunchTimeTag: "EWMProducer"
       caloDigiCollection: "CaloDigiMaker"
@@ -132,7 +132,7 @@ TrigTrkProducers : {
       CaloClusterCollectionTag : "CaloClusterFast"
       ProtonBunchTimeTag : "EWMProducer"
       TrackerFragmentTag : "daq:trk"
-      
+
    }
    TTmakePH: {
       @table::makePH
@@ -149,7 +149,7 @@ TrigTrkProducers : {
       FilterHits         : true
       ComboHitCollection : "TTmakePH"
    }
-   
+
    TTmakeSHFromDigi: {
       @table::makeSH
       FitType                 : 5
@@ -216,13 +216,13 @@ Mu2eKinKalTrigger : {
       ]
       MetaIterationSettings : [
          [ 2.0, "CADSHU" ],
-         [ 1.0, "CADSHU:BkgANNSHU" ]
+         [ 0.0, "CADSHU:BkgANNSHU" ]
       ]
       StrawXingUpdaterSettings : [
          [10.0, -1.0, -1.0, true, 0 ]
       ]
       BkgANNSHUSettings : [
-         [ "Offline/Mu2eKinKal/data/TrainBkgTrigger.dat",0.01,"Inactive", 1]
+         [ "Offline/Mu2eKinKal/data/TrainBkgTrigger.dat",0.2,"Inactive", 1]
       ]
    }
 
@@ -438,7 +438,7 @@ TrigTprProducers : {
       FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
       ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
       ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX 
+         @table::Mu2eKinKalTrigger.LOOPHELIX
          FitParticle : 11
 	 HelixSeedCollections   : [ "TTHelixMergerDeM" ]
       }
@@ -453,7 +453,7 @@ TrigTprProducers : {
       FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
       ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
       ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX 
+         @table::Mu2eKinKalTrigger.LOOPHELIX
          FitParticle : -11
 	 HelixSeedCollections   : [ "TTHelixMergerDeP" ]
       }
@@ -468,7 +468,7 @@ TrigTprProducers : {
       FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
       ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
       ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX 
+         @table::Mu2eKinKalTrigger.LOOPHELIX
          FitParticle : 11
 	 HelixSeedCollections   : [ "TTHelixMergerUeM" ]
       }
@@ -483,7 +483,7 @@ TrigTprProducers : {
       FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
       ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
       ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX 
+         @table::Mu2eKinKalTrigger.LOOPHELIX
          FitParticle : -11
 	 HelixSeedCollections   : [ "TTHelixMergerUeP" ]
       }
@@ -692,7 +692,7 @@ TrigCprProducers : {
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
    }
-   
+
    TTCalSeedFitDem: {
       module_type : LoopHelixFit
       MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
@@ -700,14 +700,14 @@ TrigCprProducers : {
       FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
       ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
       ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX 
+         @table::Mu2eKinKalTrigger.LOOPHELIX
          HelixSeedCollections: ["TTCalHelixMergerDeM"]
          FitParticle         : 11
       }
       UsePDGCharge     : true
       FitDirection     : 0
    }
-   
+
    TTCalSeedFitDep: {
       module_type : LoopHelixFit
       MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
@@ -715,7 +715,7 @@ TrigCprProducers : {
       FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
       ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
       ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX 
+         @table::Mu2eKinKalTrigger.LOOPHELIX
          HelixSeedCollections: ["TTCalHelixMergerDeP"]
          FitParticle         : -11
       }
