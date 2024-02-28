@@ -108,10 +108,10 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
     
     tag = capitalize(menuName)
     if doIt == True:
-        trigMenu.write("BRGIN_PROLOG\n")
+        trigMenu.write("BEGIN_PROLOG\n")
         trigMenu.write(tag+": {\n")
         trigMenu.write("  trigger_paths: [\n")
-        psConfig.write("BRGIN_PROLOG\n")
+        psConfig.write("BEGIN_PROLOG\n")
         psConfig.write(tag+"PSConfig: {\n")
   
     list_of_calo_trk_paths = []
