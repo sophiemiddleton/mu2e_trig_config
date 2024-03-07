@@ -6,6 +6,7 @@
 #include "Offline/Mu2eKinKal/fcl/prolog.fcl"
 #include "Offline/TrkReco/fcl/prolog.fcl"
 #include "Offline/TrkPatRec/fcl/prolog.fcl"
+#include "Offline/CalPatRec/fcl/prolog.fcl"
 
 BEGIN_PROLOG
 
@@ -162,6 +163,13 @@ TrigTrkProducers : {
       @table::FlagBkgHits
       ComboHitCollection   : "TTmakeSTH"
       FilterHits           : true
+   }
+   
+   TTDeltaFinder: {
+      @table::CalPatRec.producers.DeltaFinder
+      chCollTag                     : TTmakePH                # input coll
+      sschCollTag                   : TTmakeSH                # input coll
+      writeFilteredComboHits        : 1
    }
 }
 
@@ -442,7 +450,7 @@ TrigTprProducers : {
          FitParticle : 11
 	 HelixSeedCollections   : [ "TTHelixMergerDeM" ]
       }
-      UsePDGCharge     : true
+      UsePDGCharge     : false
       FitDirection     : 0
    }
 
@@ -457,7 +465,7 @@ TrigTprProducers : {
          FitParticle : -11
 	 HelixSeedCollections   : [ "TTHelixMergerDeP" ]
       }
-      UsePDGCharge     : true
+      UsePDGCharge     : false
       FitDirection     : 0
    }
 
@@ -472,7 +480,7 @@ TrigTprProducers : {
          FitParticle : 11
 	 HelixSeedCollections   : [ "TTHelixMergerUeM" ]
       }
-      UsePDGCharge     : true
+      UsePDGCharge     : false
       FitDirection     : 1
    }
 
@@ -487,7 +495,7 @@ TrigTprProducers : {
          FitParticle : -11
 	 HelixSeedCollections   : [ "TTHelixMergerUeP" ]
       }
-      UsePDGCharge     : true
+      UsePDGCharge     : false
       FitDirection     : 1
    }
 
@@ -704,7 +712,7 @@ TrigCprProducers : {
          HelixSeedCollections: ["TTCalHelixMergerDeM"]
          FitParticle         : 11
       }
-      UsePDGCharge     : true
+      UsePDGCharge     : false
       FitDirection     : 0
    }
 
@@ -719,7 +727,7 @@ TrigCprProducers : {
          HelixSeedCollections: ["TTCalHelixMergerDeP"]
          FitParticle         : -11
       }
-      UsePDGCharge     : true
+      UsePDGCharge     : false
       FitDirection     : 0
    }
 
