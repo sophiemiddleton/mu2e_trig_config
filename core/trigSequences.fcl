@@ -24,15 +24,15 @@ TrigTrkPaths:{
    #    @sequence::TrigRecoSequences.trkPrepareHits,
    #    TTtimeClusterFinder, tprTimeClusterDePTCFilter ]
 
-   tprDeM_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen, 
+   tprDeM_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen,
       tprDeMHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTtimeClusterFinder, tprDeMHighPStopTargTCFilter, TThelixFinder, TTHelixMergerDeM, tprDeMHighPStopTargHSFilter, TTKSFDeM, tprDeMHighPStopTargTSFilter, tprDeMHighPStopTargTriggerInfoMerger ]
-   trpDeM               : [ tprDeMHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
+   tprDeM               : [ tprDeMHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTtimeClusterFinder, tprDeMHighPStopTargTCFilter, TThelixFinder, TTHelixMergerDeM, tprDeMHighPStopTargHSFilter, TTKSFDeM, tprDeMHighPStopTargTSFilter, tprDeMHighPStopTargTriggerInfoMerger ]
 
-   tprDeP_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen, 
+   tprDeP_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen,
       tprDePHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTtimeClusterFinder, tprDePHighPStopTargTCFilter, TThelixFinder,TTHelixMergerDeP,  tprDePHighPStopTargHSFilter, TTKSFDeP, tprDePHighPStopTargTSFilter, tprDePHighPStopTargTriggerInfoMerger  ]
@@ -251,27 +251,27 @@ TrigTrkPaths:{
 }
 
 TrigCaloPaths: {
-   caloFast_cosmic: [ @sequence::TrigRecoSequences.artFragmentsGen, 
+   caloFast_cosmic: [ @sequence::TrigRecoSequences.artFragmentsGen,
       "caloFastCosmicPS",
       @sequence::TrigRecoSequences.calReco,
       "caloFastCosmicFilter"
    ]
-   caloFast_MVANNCE: [ @sequence::TrigRecoSequences.artFragmentsGen, 
+   caloFast_MVANNCE: [ @sequence::TrigRecoSequences.artFragmentsGen,
       "caloFastMVANNCEPS",
       @sequence::TrigRecoSequences.calReco,
       "caloFastMVANNCEFilter"
    ]
-   caloFast_photon: [ @sequence::TrigRecoSequences.artFragmentsGen, 
+   caloFast_photon: [ @sequence::TrigRecoSequences.artFragmentsGen,
       "caloFastPhotonPS",
       @sequence::TrigRecoSequences.calReco,
       "caloFastPhotonFilter"
    ]
-   caloFast_RMC: [ @sequence::TrigRecoSequences.artFragmentsGen, 
+   caloFast_RMC: [ @sequence::TrigRecoSequences.artFragmentsGen,
       "caloFastRMCPS",
       @sequence::TrigRecoSequences.calReco,
       "caloFastRMCFilter"
    ]
-   
+
 }
 
 TrigCstPaths: {
@@ -300,7 +300,7 @@ TrigCstPaths: {
       cstTimeClusterSDCountFilter,
       CstSimpleTimeCluster, cstTimeClusterTCFilter, cstTimeClusterTriggerInfoMerger ]
 
-   
+
 }
 
 TrigSupPaths:{
@@ -329,6 +329,6 @@ TrigSequences:{
    @table::TrigCstPaths
    @table::TrigSupPaths
 
-}   
+}
 
 END_PROLOG
