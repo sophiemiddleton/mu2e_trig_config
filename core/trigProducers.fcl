@@ -180,7 +180,7 @@ Mu2eKinKalTrigger : {
       AddHits : false
       AddMaterial : false
       MaterialCorrection : true
-      MaxCaloClusterDt : 10.0
+      MaxCaloClusterDt : 25.0 # loose timing cut; needed for DeP for now TODO
       MaxCaloClusterDOCA : 150.0 # mm
       SampleSurfaces : ["TT_Mid"]
       ExtendSurfaces : ["TT_Mid"]
