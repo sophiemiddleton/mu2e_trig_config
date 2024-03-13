@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# runs the trigger reco 
+# runs the trigger reco
 #------------------------------------------------------------------------------
 #  > mu2e --config mu2e_trig_config/test/triggerTest.fcl --source "your digis file" --TFile globalFilter.root --nevts=100
 #include "Offline/fcl/minimalMessageService.fcl"
@@ -13,17 +13,9 @@
 #include "mu2e_trig_config/gen/trig_physMenuPSConfig_OnSpill.fcl"
 #include "mu2e_trig_config/gen/trig_physMenu_OnSpill.fcl"
 
-
 process_name : globalTrigger
 
-source :
-{
-   module_type : RootInput
-   inputCommands: [ "keep  *_*_*_*",
-      "drop  *ComboHitCollection_*_*_*"]
-}
 # we don't need any simulation services for this job
-# services : @local::Services.Reco
 
 services : @local::Services.Reco
 
@@ -45,8 +37,8 @@ physics : {
    #@table::TrigLoggerOutputs
 
    producers : { @table::TrigProducers.producers }
-   filters   : { 
-      @table::TrigFilters.filters   
+   filters   : {
+      @table::TrigFilters.filters
       @table::Trig_physMenuPSConfig
    }
 }
@@ -55,7 +47,6 @@ services.TFileService.fileName : "test.root"
 physics.trigger_paths : [@sequence::Trig_physMenu.trigger_paths]
 
 #include "mu2e_trig_config/core/trigDigiInputsEpilog.fcl"
+#include "Production/Validation/database.fcl"
+#include "Production/JobConfig/reco/drop_trigger.fcl"
 
-services.DbService.purpose: MDC2020_best
-services.DbService.version: v1_1
-services.DbService.verbose : 2
