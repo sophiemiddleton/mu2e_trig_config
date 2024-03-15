@@ -1,0 +1,66 @@
+#------------------------------------------------------------------------------
+# runs the trigger reco on digis and writes out digis + triger products including MC truth matching
+#------------------------------------------------------------------------------
+#  > mu2e --config mu2e_trig_config/test/triggerTestMC.fcl --source "your digis file" --TFile globalFilter.root --nevts=100
+
+#include "Offline/CommonMC/fcl/prolog_trigger.fcl"
+#include "Production/JobConfig/digitize/prolog.fcl"
+#include "mu2e_trig_config/test/triggerTest.fcl"
+#
+#  Add MC truth matching for the highP_stopTarg triggers
+#
+physics.producers.SelectRecoMCcprDeM : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTCalSeedFitDem" ]
+  HelixSeedCollections  : ["TTCalHelixMergerDeM" ]
+}
+
+physics.producers.SelectRecoMCtprDeM : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTKSFDeM" ]
+  HelixSeedCollections  : ["TTHelixMergerDeM" ]
+}
+
+physics.producers.SelectRecoMCcprDeP : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTCalSeedFitDep" ]
+  HelixSeedCollections  : ["TTCalHelixMergerDeP" ]
+}
+
+physics.producers.SelectRecoMCtprDeP : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTKSFDeP" ]
+  HelixSeedCollections  : ["TTHelixMergerDeP" ]
+}
+#
+#  Add these to the sequences
+#
+physics.tprDeM_highP_stopTarg           : [ @sequence::physics.tprDeM_highP_stopTarg, SelectRecoMCtprDeM]
+physics.cprDeM_highP_stopTarg           : [ @sequence::physics.cprDeM_highP_stopTarg, SelectRecoMCcprDeM]
+physics.tprDeP_highP_stopTarg           : [ @sequence::physics.tprDeP_highP_stopTarg, SelectRecoMCtprDeP]
+physics.cprDeP_highP_stopTarg           : [ @sequence::physics.cprDeP_highP_stopTarg, SelectRecoMCcprDeP]
+#
+# this next produces additional hit-level payload to support MC truth matching.
+# It produces functionally equivalent output as the standard module but is slower, so don't use this script for timing studies
+#
+physics.producers.TTmakeSH.FilterHits : false
+physics.producers.TTmakePH.TestFlag : true
+physics.producers.TTmakePH.StrawHitSelectionBits : ["EnergySelection","TimeSelection","RadiusSelection"]
+physics.producers.TTmakePH.StrawHitMask          : ["Dead"]
+#
+#  Create an output stream
+#
+outputs : {
+  TriggeredOutput : {
+    module_type : RootOutput
+    SelectEvents : @local::Digitize.SignalTriggers
+    outputCommands : [ "drop *_*_*_*",
+      @sequence::Digitize.GeneralProducts,
+      @sequence::Digitize.DigiProducts,
+      @sequence::Digitize.TriggerProducts,
+      "keep *_SelectRecoMC*_*_*" ]
+  fileName : "dig.owner.triggerTestMC.version.sequencer.art"
+  }
+}
+physics.EndPath : [ TriggeredOutput ]
+physics.end_paths : [ EndPath ]
