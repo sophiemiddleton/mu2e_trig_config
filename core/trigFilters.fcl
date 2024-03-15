@@ -943,8 +943,8 @@ TrigCalFilters:{
       CaloClusterModuleLabel: "CaloClusterFast"
       InnerRadius: 460
       MaxEnergy: 600
-      MinCelEneCut: 15
-      MinEnergy: 120
+      MinCelEneCut: 12
+      MinEnergy: 90
       MinNCrystalHits: 0
       MinNumCeldiagver: 6
       MinNumCelinout: 6
