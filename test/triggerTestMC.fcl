@@ -62,5 +62,7 @@ outputs : {
   fileName : "dig.owner.triggerTestMC.version.sequencer.art"
   }
 }
+# don't use database time offsets in digitization
+services.ProditionsService.strawElectronics.overrideDbTimeOffsets : true
 physics.EndPath : [ TriggeredOutput ]
 physics.end_paths : [ EndPath ]
