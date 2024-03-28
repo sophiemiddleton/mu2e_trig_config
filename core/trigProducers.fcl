@@ -164,7 +164,7 @@ TrigTrkProducers : {
       ComboHitCollection   : "TTmakeSTH"
       FilterHits           : true
    }
-   
+
    TTDeltaFinder: {
       @table::CalPatRec.producers.DeltaFinder
       chCollTag                     : TTmakePH                # input coll
@@ -191,7 +191,7 @@ Mu2eKinKalTrigger : {
       MaxCaloClusterDt : 25.0 # loose timing cut; needed for DeP for now TODO
       MaxCaloClusterDOCA : 150.0 # mm
       SampleSurfaces : ["TT_Mid"]
-      ExtendSurfaces : ["TT_Mid"]
+      SaveTrajectory : "T0"
    }
 
    SEEDFIT: {
@@ -236,6 +236,7 @@ Mu2eKinKalTrigger : {
 
    LOOPHELIX : {
       @table::Mu2eKinKal.LOOPHELIX
+      ExtrapolateSurfaces : []
       SeedErrors: [ 5, 5, 5, 5, 2e-2, 5 ]
       ComboHitCollection : "TTmakeSH"
       CaloClusterCollection : "CaloClusterFast"
@@ -243,6 +244,7 @@ Mu2eKinKalTrigger : {
 
    KINEMATICLINE : {
       @table::Mu2eKinKal.KINEMATICLINE
+      ExtrpolateSurfaces : []
    }
 }
 
