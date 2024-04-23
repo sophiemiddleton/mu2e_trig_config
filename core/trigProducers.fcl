@@ -278,6 +278,7 @@ TrigTprProducers : {
    }
 
    TThelixFinder: {
+      doSingleOutput: true
       AveragePitch: 6e-1
       CentralPerpResolution: 12
       CentralRadialResolution: 20
@@ -401,9 +402,9 @@ TrigTprProducers : {
       targetconsistent_init: false
    }
 
-   TTHelixMergerDeM: {
+   TTHelixMergerDe: {
       HelixFinders: [
-         "TThelixFinder:Positive"
+         "TThelixFinder","TThelixFinder"
       ]
       debugLevel: 0
       deltanh: 5
@@ -411,9 +412,9 @@ TrigTprProducers : {
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
    }
-   TTHelixMergerDeP: {
+   TTHelixMergerUe: {
       HelixFinders: [
-         "TThelixFinder:Negative"
+         "TThelixFinderUe","TThelixFinderUe"
       ]
       debugLevel: 0
       deltanh: 5
@@ -421,27 +422,7 @@ TrigTprProducers : {
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
    }
-   TTHelixMergerUeM: {
-      HelixFinders: [
-         "TThelixFinderUe:Negative"
-      ]
-      debugLevel: 0
-      deltanh: 5
-      module_type: "MergeHelices"
-      scaleXY: 1.1
-      scaleZPhi: 7.5e-1
-   }
-   TTHelixMergerUeP: {
-      HelixFinders: [
-         "TThelixFinderUe:Positive"
-      ]
-      debugLevel: 0
-      deltanh: 5
-      module_type: "MergeHelices"
-      scaleXY: 1.1
-      scaleZPhi: 7.5e-1
-   }
-   TTKSFDeM: {
+   TTKSFDe: {
       module_type : LoopHelixFit
       MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
       KKFitSettings    : { @table::Mu2eKinKalTrigger.KKFIT   }
@@ -450,28 +431,13 @@ TrigTprProducers : {
       ModuleSettings   : {
          @table::Mu2eKinKalTrigger.LOOPHELIX
          FitParticle : 11
-	 HelixSeedCollections   : [ "TTHelixMergerDeM" ]
+	 HelixSeedCollections   : [ "TTHelixMergerDe" ]
       }
       UsePDGCharge     : false
       FitDirection     : 0
    }
 
-   TTKSFDeP: {
-      module_type : LoopHelixFit
-      MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
-      KKFitSettings    : { @table::Mu2eKinKalTrigger.KKFIT   }
-      FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
-      ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
-      ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX
-         FitParticle : -11
-	 HelixSeedCollections   : [ "TTHelixMergerDeP" ]
-      }
-      UsePDGCharge     : false
-      FitDirection     : 0
-   }
-
-   TTKSFUeM: {
+   TTKSFUe: {
       module_type : LoopHelixFit
       MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
       KKFitSettings    : { @table::Mu2eKinKalTrigger.KKFIT   }
@@ -480,28 +446,14 @@ TrigTprProducers : {
       ModuleSettings   : {
          @table::Mu2eKinKalTrigger.LOOPHELIX
          FitParticle : 11
-	 HelixSeedCollections   : [ "TTHelixMergerUeM" ]
-      }
-      UsePDGCharge     : false
-      FitDirection     : 1
-   }
-
-   TTKSFUeP: {
-      module_type : LoopHelixFit
-      MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
-      KKFitSettings    : { @table::Mu2eKinKalTrigger.KKFIT   }
-      FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
-      ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
-      ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX
-         FitParticle : -11
-	 HelixSeedCollections   : [ "TTHelixMergerUeP" ]
+	 HelixSeedCollections   : [ "TTHelixMergerUe" ]
       }
       UsePDGCharge     : false
       FitDirection     : 1
    }
 
    TThelixFinderUe: {
+      doSingleOutput: true
       AveragePitch: 6e-1
       CentralPerpResolution: 12
       CentralRadialResolution: 20
@@ -624,34 +576,22 @@ TrigTprProducers : {
       targetconsistent_init: false
    }
 
-   tprDeMHighPStopTargTriggerInfoMerger: {
+   tprDeHighPStopTargTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   tprDeMLowPStopTargTriggerInfoMerger: {
+   tprDeLowPStopTargTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   tprDePHighPStopTargTriggerInfoMerger: {
+   tprHelixDeIpaPhiScaledTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   tprDePLowPStopTargTriggerInfoMerger: {
+   tprHelixDeIpaTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   tprHelixDeMIpaPhiScaledTriggerInfoMerger: {
+   tprHelixDeTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   tprHelixDeMIpaTriggerInfoMerger: {
-      module_type: "MergeTriggerInfo"
-   }
-   tprHelixDeMTriggerInfoMerger: {
-      module_type: "MergeTriggerInfo"
-   }
-   tprHelixDePTriggerInfoMerger: {
-      module_type: "MergeTriggerInfo"
-   }
-   tprHelixUeMTriggerInfoMerger: {
-      module_type: "MergeTriggerInfo"
-   }
-   tprHelixUePTriggerInfoMerger: {
+   tprHelixUeTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
 }
@@ -662,9 +602,9 @@ TrigTprProducers : {
 #
 ################################################################################
 TrigCprProducers : {
-   TTCalHelixMergerDeM: {
+   TTCalHelixMergerDe: {
       HelixFinders: [
-         "TTCalHelixFinderDe:Positive"
+         "TTCalHelixFinderDe","TTCalHelixFinderDe"
       ]
       debugLevel: 0
       deltanh: 5
@@ -672,29 +612,9 @@ TrigCprProducers : {
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
    }
-   TTCalHelixMergerDeP: {
+   TTCalHelixMergerUe: {
       HelixFinders: [
-         "TTCalHelixFinderDe:Negative"
-      ]
-      debugLevel: 0
-      deltanh: 5
-      module_type: "MergeHelices"
-      scaleXY: 1.1
-      scaleZPhi: 7.5e-1
-   }
-   TTCalHelixMergerUeM: {
-      HelixFinders: [
-         "TTCalHelixFinderUe:Negative"
-      ]
-      debugLevel: 0
-      deltanh: 5
-      module_type: "MergeHelices"
-      scaleXY: 1.1
-      scaleZPhi: 7.5e-1
-   }
-   TTCalHelixMergerUeP: {
-      HelixFinders: [
-         "TTCalHelixFinderUe:Positive"
+         "TTCalHelixFinderUe","TTCalHelixFinderUe"
       ]
       debugLevel: 0
       deltanh: 5
@@ -703,7 +623,7 @@ TrigCprProducers : {
       scaleZPhi: 7.5e-1
    }
 
-   TTCalSeedFitDem: {
+   TTCalSeedFitDe: {
       module_type : LoopHelixFit
       MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
       KKFitSettings    : { @table::Mu2eKinKalTrigger.KKFIT   }
@@ -711,47 +631,22 @@ TrigCprProducers : {
       ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
       ModuleSettings   : {
          @table::Mu2eKinKalTrigger.LOOPHELIX
-         HelixSeedCollections: ["TTCalHelixMergerDeM"]
+         HelixSeedCollections: ["TTCalHelixMergerDe"]
          FitParticle         : 11
       }
       UsePDGCharge     : false
       FitDirection     : 0
    }
 
-   TTCalSeedFitDep: {
-      module_type : LoopHelixFit
-      MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
-      KKFitSettings    : { @table::Mu2eKinKalTrigger.KKFIT   }
-      FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
-      ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
-      ModuleSettings   : {
-         @table::Mu2eKinKalTrigger.LOOPHELIX
-         HelixSeedCollections: ["TTCalHelixMergerDeP"]
-         FitParticle         : -11
-      }
-      UsePDGCharge     : false
-      FitDirection     : 0
-   }
-
-   cprDeMHighPStopTargTriggerInfoMerger: {
+   cprDeHighPStopTargTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   cprDeMLowPStopTargTriggerInfoMerger: {
+   cprDeLowPStopTargTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   cprDePHighPStopTargTriggerInfoMerger: {
+   cprHelixDeTriggerInfoMerger: {
       module_type: "MergeTriggerInfo"
    }
-   cprDePLowPStopTargTriggerInfoMerger: {
-      module_type: "MergeTriggerInfo"
-   }
-   cprHelixDeMTriggerInfoMerger: {
-      module_type: "MergeTriggerInfo"
-   }
-   cprHelixDePTriggerInfoMerger: {
-      module_type: "MergeTriggerInfo"
-   }
-
 }
 
 ################################################################################
