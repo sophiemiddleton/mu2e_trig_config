@@ -14,7 +14,7 @@
             "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] },
                                 {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }
                                ]
-        } ,
+        },
         "tprDe_lowP_stopTarg" : {
             "bit": 110 ,
             "enabled": 1,
@@ -134,9 +134,6 @@
                                  {"eventMode":"OffSpill", "prescale":1e4, "streams": [ "cosmics_main", "physics_minBias" ]}]
         }
 
-
-
-
     },
 
     "agg_trigger_paths" : {
@@ -151,8 +148,14 @@
         "dqm_trigger"        : { "enabled" : 1 }
     },
 
+    "dataLogger_analyzers": {
+    },
+
     "lumiLogger_streams":{
         "lumi": { "enabled" : 1 }
+    },
+
+    "lumiLogger_analyzers": {
     }
 
 
