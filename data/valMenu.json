@@ -45,7 +45,7 @@
         
         
         "tprHelixUe" : { 
-            "bit" : 132 ,
+            "bit" : 131 ,
             "enabled": 1, 
             "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":10000, "streams": [ "physics_main", "dqm_trigger" ]}, 
                                  {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }]
@@ -74,7 +74,7 @@
         },
         
         "cprHelixUe" : { 
-            "bit" : 172,
+            "bit" : 171,
             "enabled": 1, 
             "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":10000, "streams": [ "physics_main", "dqm_trigger" ]}, 
                                  {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]         }]
