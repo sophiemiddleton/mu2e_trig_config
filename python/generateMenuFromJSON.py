@@ -35,6 +35,10 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
  
     
     list_of_logger_streams = []
+    #create the instances of the RootDAQOutput module
+    if doIt == True:
+        loggerConfig.write("    outputs : {\n")        
+ 
     for k in dictLog:
         if dictLog[k]['enabled'] == 0: continue
         vv = k.split("_")
@@ -44,13 +48,21 @@ def generateLogger(evtMode, outdir, dictLog, logName, dictStreams, isOfflineBuil
         list_of_logger_streams.append(streamName)
         #
         if doIt == True:
-            loggerConfig.write('   {}:'.format(streamName)+' { \n')
-            loggerConfig.write('      module_type: RootDAQOutput \n')
-            loggerConfig.write('      SelectEvents : {}\n'.format(json.dumps(dictStreams[k])))
-            loggerConfig.write('      maxSubRuns   : 1\n')
-            loggerConfig.write('      fileName     : "{}.art\"\n'.format(k))
-            loggerConfig.write('   }\n\n')
+            loggerConfig.write('         {}:'.format(streamName)+' { \n')
+            loggerConfig.write('            module_type: RootDAQOutput \n')
+            loggerConfig.write('            SelectEvents : {}\n'.format(json.dumps(dictStreams[k])))
+            loggerConfig.write('            maxSubRuns   : 1\n')
+            loggerConfig.write('            fileName     : "{}_%r_%#.art\"\n'.format(k))
+            loggerConfig.write('         }\n\n')
     if doIt == True:
+        loggerConfig.write("    }\n\n")        
+
+    if doIt == True: # TO-DO: need to add a sequence for running the analyzer module that provides the DAQ metrics
+        loggerConfig.write("    analyzers : {\n")        
+
+
+    if doIt == True:
+        loggerConfig.write("    }\n")        
         loggerConfig.write("}\n")
         loggerConfig.write("END_PROLOG\n")
         loggerConfig.close()
