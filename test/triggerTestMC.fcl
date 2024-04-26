@@ -9,36 +9,23 @@
 #
 #  Add MC truth matching for the highP_stopTarg triggers
 #
-physics.producers.SelectRecoMCcprDeM : {
+physics.producers.SelectRecoMCcprDe : {
   @table::CommonMCTrigger.TTSelectRecoMC
-  KalSeedCollections  : [ "TTCalSeedFitDem" ]
-  HelixSeedCollections  : ["TTCalHelixMergerDeM" ]
+  KalSeedCollections  : [ "TTCalSeedFitDe" ]
+  HelixSeedCollections  : ["TTCalHelixMergerDe" ]
 }
 
-physics.producers.SelectRecoMCtprDeM : {
+physics.producers.SelectRecoMCtprDe : {
   @table::CommonMCTrigger.TTSelectRecoMC
-  KalSeedCollections  : [ "TTKSFDeM" ]
-  HelixSeedCollections  : ["TTHelixMergerDeM" ]
+  KalSeedCollections  : [ "TTKSFDe" ]
+  HelixSeedCollections  : ["TTHelixMergerDe" ]
 }
 
-physics.producers.SelectRecoMCcprDeP : {
-  @table::CommonMCTrigger.TTSelectRecoMC
-  KalSeedCollections  : [ "TTCalSeedFitDep" ]
-  HelixSeedCollections  : ["TTCalHelixMergerDeP" ]
-}
-
-physics.producers.SelectRecoMCtprDeP : {
-  @table::CommonMCTrigger.TTSelectRecoMC
-  KalSeedCollections  : [ "TTKSFDeP" ]
-  HelixSeedCollections  : ["TTHelixMergerDeP" ]
-}
 #
 #  Add these to the sequences
 #
-physics.tprDeM_highP_stopTarg           : [ @sequence::physics.tprDeM_highP_stopTarg, SelectRecoMCtprDeM]
-physics.cprDeM_highP_stopTarg           : [ @sequence::physics.cprDeM_highP_stopTarg, SelectRecoMCcprDeM]
-physics.tprDeP_highP_stopTarg           : [ @sequence::physics.tprDeP_highP_stopTarg, SelectRecoMCtprDeP]
-physics.cprDeP_highP_stopTarg           : [ @sequence::physics.cprDeP_highP_stopTarg, SelectRecoMCcprDeP]
+physics.tprDe_highP_stopTarg           : [ @sequence::physics.tprDe_highP_stopTarg, SelectRecoMCtprDe]
+physics.cprDe_highP_stopTarg           : [ @sequence::physics.cprDe_highP_stopTarg, SelectRecoMCcprDe]
 #
 # this next produces additional hit-level payload to support MC truth matching.
 # It produces functionally equivalent output as the standard module but is slower, so don't use this script for timing studies
