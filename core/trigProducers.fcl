@@ -404,23 +404,27 @@ TrigTprProducers : {
 
    TTHelixMergerDe: {
       HelixFinders: [
-         "TThelixFinder","TThelixFinder"
+         "TThelixFinder"
       ]
       debugLevel: 0
       deltanh: 5
       module_type: "MergeHelices"
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
+      MinHitOverlapFraction: 0.5
+      MinNHitOverlap: 10
    }
    TTHelixMergerUe: {
       HelixFinders: [
-         "TThelixFinderUe","TThelixFinderUe"
+         "TThelixFinderUe"
       ]
       debugLevel: 0
       deltanh: 5
       module_type: "MergeHelices"
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
+      MinHitOverlapFraction: 0.5
+      MinNHitOverlap: 10
    }
    TTKSFDe: {
       module_type : LoopHelixFit
@@ -604,23 +608,27 @@ TrigTprProducers : {
 TrigCprProducers : {
    TTCalHelixMergerDe: {
       HelixFinders: [
-         "TTCalHelixFinderDe","TTCalHelixFinderDe"
+         "TTCalHelixFinderDe"
       ]
       debugLevel: 0
       deltanh: 5
       module_type: "MergeHelices"
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
+      MinHitOverlapFraction: 0.5
+      MinNHitOverlap: 10
    }
    TTCalHelixMergerUe: {
       HelixFinders: [
-         "TTCalHelixFinderUe","TTCalHelixFinderUe"
+         "TTCalHelixFinderUe"
       ]
       debugLevel: 0
       deltanh: 5
       module_type: "MergeHelices"
       scaleXY: 1.1
       scaleZPhi: 7.5e-1
+      MinHitOverlapFraction: 0.5
+      MinNHitOverlap: 10
    }
 
    TTCalSeedFitDe: {
