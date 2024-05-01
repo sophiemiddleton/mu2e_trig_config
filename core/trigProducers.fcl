@@ -663,84 +663,58 @@ TrigCprProducers : {
 #
 ################################################################################
 TrigAprProducers : {
-   # TTtimeClusterFinder: {
-   #    caloDtMax: 30
-   #    caloTimeOffset: -3.1
-   #    ccCollLabel: "CaloClusterFast"
-   #    chCollLabel: "TTflagBkgHits"
-   #    chCollLabel2: "TTmakeSH"
-   #    chunkFitThresh: 8
-   #    chunkSep: 5
-   #    chunkThresh: 3
-   #    chunkWindow: 20
-   #    clusterThresh: 15
-   #    combineWindow: 30
-   #    comptonThresh: 8
-   #    debugLevel: 0
-   #    diagLevel: 0
-   #    diagPlugin: {
-   #       mcTruth: 1
-   #       mcUtils: {
-   #          comboHitCollTag: "makeSH"
-   #          strawDigiMCCollTag: "compressDigiMCs"
-   #          tool_type: "TrkRecoMcUtils"
-   #       }
-   #       simIDThresh: 15
-   #       tool_type: "TZClusterFinderDiag"
-   #    }
-   #    doComptonClean: 0
-   #    doIsoClean: 0
-   #    doPhiClean: 0
-   #    hitBkgBits: [
-   #       "Noisy",
-   #       "Dead",
-   #       "Background"
-   #    ]
-   #    isoRad: 100
-   #    maxAppSigmaTrans: 5
-   #    maxApproachSigma: 5
-   #    maxCombineSep: 2500
-   #    maxIntersectSig: 5
-   #    minCaloEnergy: 50
-   #    minCaloSize: 2
-   #    module_type: "TZClusterFinder"
-   #    phiCleanPhi: 45
-   #    phiCleanThresh: 5
-   #    printFrequency: 1000
-   #    radSelect: 1
-   #    recoverCCs: 1
-   #    recoverWindow: 30
-   #    runDisplay: 0
-   #    saveProtCand: 0
-   #    tcCollLabel: "TimeClusterFinderDe"
-   #    useCCs: 1
-   # }
-   # TThelixFinder: {
-      #    caloClusterSigma: 30
-      #    ccCollLabel: "CaloClusterFast"
-      #    chCollLabel: "TTflagBkgHits"
-      #    chi2LineSaveThresh: 3
-      #    isoMinHitsNear: 2
-      #    isoRad: 150
-      #    max2PiAmbigResidual: 2
-      #    maxCircleRecoverSigma: 5
-      #    maxDeltaPhi: 2
-      #    maxLineRecoverSigma: 5
-      #    maxPhiZResidual: 2
-      #    maxSeedCircleResidual: 1
-      #    maxZWindow: 500
-      #    minDistCut: 20
-      #    minFinalSeedHits: 15
-      #    minNHelixHits: 15
-      #    minSeedCircleHits: 7
-      #    module_type: "HelixFinder"
-      #    nPhiBins: 36
-      #    nPhiPeakBins: 3
-      #    phiPeakThresh: 5
-      #    phiWindow: 45
-      #    tcCollLabel: "TTtimeClusterFinder"
-      #    updateCircleErrThresh: 5
-      # }
+   TTTZClusterFinder : { @table::CalPatRec.producers.TZClusterFinder
+      chCollLabel                : "TTflagBkgHits"
+      chCollLabel2               : "TTmakeSH"
+      ccCollLabel                : "CaloClusterFast"
+   }
+   
+   TTAprHelixFinder: { @table::CalPatRec.producers.AgnosticHelixFinder
+      chCollLabel             : "TTflagBkgHits"
+      tcCollLabel             : "TTTZClusterFinder"
+      ccCollLabel             : "CaloClusterFast"
+   }
+   
+   TTAprHelixMerger: {
+      HelixFinders: [
+         "TTAprHelixFinder"
+      ]
+      debugLevel: 0
+      deltanh: 5
+      module_type: "MergeHelices"
+      scaleXY: 1.1
+      scaleZPhi: 7.5e-1
+      MinHitOverlapFraction: 0.5
+      MinNHitOverlap: 10
+   }
+
+   TTAprKSF: {
+      module_type : LoopHelixFit
+      MaterialSettings : { @table::Mu2eKinKalTrigger.MAT     }
+      KKFitSettings    : { @table::Mu2eKinKalTrigger.KKFIT   }
+      FitSettings      : { @table::Mu2eKinKalTrigger.SEEDFIT }
+      ExtensionSettings: { @table::Mu2eKinKalTrigger.SEEDEXT }
+      ModuleSettings   : {
+         @table::Mu2eKinKalTrigger.LOOPHELIX
+         FitParticle : 11
+	 HelixSeedCollections   : [ "TTAprHelixMerger" ]
+      }
+      UsePDGCharge     : false
+      FitDirection     : 0
+   }
+
+   aprHighPStopTargTriggerInfoMerger: {
+      module_type: "MergeTriggerInfo"
+   }
+   aprLowPStopTargTriggerInfoMerger: {
+        module_type: "MergeTriggerInfo"
+    }
+   aprLowPStopTargMultiTrkTriggerInfoMerger: {
+        module_type: "MergeTriggerInfo"
+    }
+   aprHelixTriggerInfoMerger: {
+        module_type: "MergeTriggerInfo"
+    }
 }
 
 ################################################################################
