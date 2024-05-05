@@ -618,7 +618,7 @@ TrigTprFilters:{
          minAbsLambda: 50
          minD0: -150
          minHitRatio: 4e-1
-         minMomentum: 40
+         minMomentum: 50
          minNLoops: 0
          minNStrawHits: 15
          minPt: 0
@@ -960,7 +960,7 @@ TrigAprFilters:{
          minHitRatio: 4e-1
          minMomentum: 80
          minNLoops: 0
-         minNStrawHits: 12
+         minNStrawHits: 15
          minPt: 0
          prescaleUsingD0Phi: false
          requireCaloCluster: false
@@ -979,7 +979,7 @@ TrigAprFilters:{
          minHitRatio: 4e-1
          minMomentum: 70
          minNLoops: 0
-         minNStrawHits: 12
+         minNStrawHits: 15
          minPt: 0
          prescaleUsingD0Phi: false
          requireCaloCluster: false
@@ -1078,7 +1078,7 @@ TrigAprFilters:{
       }
    }
    aprLowPStopTargTCFilter: {
-      minNStrawHits: 10
+      minNStrawHits: 15
       module_type: "TimeClusterFilter"
       requireCaloCluster: false
       timeClusterCollection: "TTTZClusterFinder"
@@ -1100,7 +1100,7 @@ TrigAprFilters:{
             minD0: -200
             minFitCons: -1
             minMomentum: 50
-            minNStrawHits: 12
+            minNStrawHits: 15
             minT0: 0
             minTanDip: 0
             requireCaloCluster: false
@@ -1118,7 +1118,7 @@ TrigAprFilters:{
             minD0: -200
             minFitCons: -1
             minMomentum: 50
-            minNStrawHits: 12
+            minNStrawHits: 15
             minT0: 0
             minTanDip: 0
             requireCaloCluster: false
