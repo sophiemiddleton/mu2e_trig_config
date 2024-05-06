@@ -618,7 +618,7 @@ TrigTprFilters:{
          minAbsLambda: 50
          minD0: -150
          minHitRatio: 4e-1
-         minMomentum: 40
+         minMomentum: 50
          minNLoops: 0
          minNStrawHits: 15
          minPt: 0
@@ -937,6 +937,341 @@ TrigSupFilters:{
 
 }
 
+################################################################################
+# Filters for teh sequences using the Agnosti helix finder algorithm
+#
+#
+################################################################################
+TrigAprFilters:{
+   aprHighPStopTargHSFilter: {
+      module_type: "HelixFilter"
+      helixSeedCollection: "TTAprHelixMerger"
+      posHelicitySelection : {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 300
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 300
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 140
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 80
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+      negHelicitySelection: {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 300
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 300
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 140
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 70
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+   }
+   aprHighPStopTargTCFilter : {
+      minNStrawHits: 15
+      module_type: "TimeClusterFilter"
+      requireCaloCluster: false
+      timeClusterCollection: "TTTZClusterFinder"
+   }
+   aprHighPStopTargKSFilter: {
+      kalSeedCollection: "TTAprKSF"
+      module_type: "KalSeedFilter"
+      KalSeedCuts : [ 
+         { #cuts for downstreeam e-minus
+            doParticleTypeCheck: false
+            doZPropDirCheck: true
+            fitdirection: 0
+            fitparticle: 11
+            maxChi2DOF: 20
+            maxD0: 200
+            maxMomErr: 10
+            maxMomentum: 2000
+            maxTanDip: 100
+            minD0: -200
+            minFitCons: -1
+            minMomentum: 80
+            minNStrawHits: 15
+            minT0: 0
+            minTanDip: 0
+            requireCaloCluster: false
+         },
+         {#cuts for downstreeam e-plus
+            doParticleTypeCheck: false
+            doZPropDirCheck: true
+            fitdirection: 0
+            fitparticle: -11
+            maxChi2DOF: 20
+            maxD0: 200
+            maxMomErr: 10
+            maxMomentum: 2000
+            maxTanDip: 100
+            minD0: -200
+            minFitCons: -1
+            minMomentum: 70
+            minNStrawHits: 15
+            minT0: 0
+            minTanDip: 0
+            requireCaloCluster: false
+         }
+      ]
+   }
+
+   #apr lowP filters
+   aprLowPStopTargHSFilter: {
+      module_type: "HelixFilter"
+      helixSeedCollection: "TTAprHelixMerger"
+      posHelicitySelection : {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 500
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 300
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 50
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 50
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+      negHelicitySelection : {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 500
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 300
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 50
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 50
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+   }
+   aprLowPStopTargTCFilter: {
+      minNStrawHits: 15
+      module_type: "TimeClusterFilter"
+      requireCaloCluster: false
+      timeClusterCollection: "TTTZClusterFinder"
+   }
+   aprLowPStopTargKSFilter: {
+      kalSeedCollection: "TTAprKSF"
+      module_type: "KalSeedFilter"
+      KalSeedCuts : [ 
+         { #cuts for downstreeam e-minus
+            doParticleTypeCheck: false
+            doZPropDirCheck: true
+            fitdirection: 0
+            fitparticle: 11
+            maxChi2DOF: 20
+            maxD0: 200
+            maxMomErr: 10
+            maxMomentum: 2000
+            maxTanDip: 100
+            minD0: -200
+            minFitCons: -1
+            minMomentum: 50
+            minNStrawHits: 15
+            minT0: 0
+            minTanDip: 0
+            requireCaloCluster: false
+         },
+         {#cuts for downstreeam e-plus
+            doParticleTypeCheck: false
+            doZPropDirCheck: true
+            fitdirection: 0
+            fitparticle: -11
+            maxChi2DOF: 20
+            maxD0: 200
+            maxMomErr: 10
+            maxMomentum: 2000
+            maxTanDip: 100
+            minD0: -200
+            minFitCons: -1
+            minMomentum: 50
+            minNStrawHits: 15
+            minT0: 0
+            minTanDip: 0
+            requireCaloCluster: false
+         }
+      ]
+   }
+
+   aprLowPStopTargMultiTrkHSFilter: {
+      helixSeedCollection: "TTAprHelixMerger"
+      module_type: "HelixFilter"
+      minNHelices: 2
+      posHelicitySelection : {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 500
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 150
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 50
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 80
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+      negHelicitySelection : {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 500
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 150
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 50
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 70
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+   }
+   aprLowPStopTargMultiTrkTCFilter: {
+      minNStrawHits: 10
+      module_type: "TimeClusterFilter"
+      requireCaloCluster: false
+      timeClusterCollection: "TTTZClusterFinder"
+   }
+   aprLowPStopTargMultiTrkKSFilter: {
+      kalSeedCollection: "TTAprKSF"
+      module_type: "KalSeedFilter"
+      minNTrks: 2
+      KalSeedCuts : [ 
+         { #cuts for downstreeam e-minus
+            doParticleTypeCheck: false
+            doZPropDirCheck: true
+            fitdirection: 0
+            fitparticle: 11
+            maxChi2DOF: 20
+            maxD0: 150
+            maxMomErr: 10
+            maxMomentum: 2000
+            maxTanDip: 100
+            minD0: -150
+            minFitCons: -1
+            minMomentum: 80
+            minNStrawHits: 12
+            minT0: 0
+            minTanDip: 0
+            requireCaloCluster: false
+         },
+         { #cuts for downstreeam e-plus
+            doParticleTypeCheck: false
+            doZPropDirCheck: true
+            fitdirection: 0
+            fitparticle: -11
+            maxChi2DOF: 20
+            maxD0: 150
+            maxMomErr: 10
+            maxMomentum: 2000
+            maxTanDip: 100
+            minD0: -150
+            minFitCons: -1
+            minMomentum: 80
+            minNStrawHits: 12
+            minT0: 0
+            minTanDip: 0
+            requireCaloCluster: false
+         }
+      ]
+   }
+
+   #aprHelix filters
+   aprHelixHSFilter: {
+      helixSeedCollection: "TTAprHelixMerger"
+      module_type: "HelixFilter"
+      posHelicitySelection : {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 500
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 300
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 50
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 50
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+      negHelicitySelection : {
+         configured: true
+         doHelicityCheck: true
+         maxAbsLambda: 500
+         maxChi2PhiZ: 8
+         maxChi2XY: 8
+         maxD0: 300
+         maxMomentum: 2000
+         maxNLoops: 30
+         minAbsLambda: 50
+         minD0: -150
+         minHitRatio: 4e-1
+         minMomentum: 50
+         minNLoops: 0
+         minNStrawHits: 15
+         minPt: 0
+         prescaleUsingD0Phi: false
+         requireCaloCluster: false
+      }
+   }
+   aprHelixTCFilter: {
+      minNStrawHits: 10
+      module_type: "TimeClusterFilter"
+      requireCaloCluster: false
+      timeClusterCollection: "TTTZClusterFinder"
+   }
+}
+
+
+
 
 ################################################################################
 #
@@ -1007,10 +1342,10 @@ TrigFilters : {
    filters : {
       @table::TrigCprFilters
       @table::TrigTprFilters
+      @table::TrigAprFilters
       @table::TrigCstFilters
       @table::TrigSupFilters
       @table::TrigCalFilters
-      
    }
 }
 END_PROLOG
