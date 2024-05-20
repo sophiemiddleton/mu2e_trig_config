@@ -156,15 +156,15 @@
         "minBias_SDCount":{
             "bit" : 400 ,
             "enabled": 1,
-            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":1e4, "streams": [ "physics_minBias" ]},
-                                 {"eventMode":"OffSpill", "prescale":1e4, "streams": [ "cosmics_main", "physics_minBias" ]}]
+            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":10000, "streams": [ "physics_minBias" ]},
+                                 {"eventMode":"OffSpill", "prescale":10000, "streams": [ "cosmics_main", "physics_minBias" ]}]
         },
 
         "minBias_CDCount":{
             "bit" : 410 ,
             "enabled": 1,
-            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":1e4, "streams": [ "physics_minBias" ]},
-                                 {"eventMode":"OffSpill", "prescale":1e4, "streams": [ "cosmics_main", "physics_minBias" ]}]
+            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":10000, "streams": [ "physics_minBias" ]},
+                                 {"eventMode":"OffSpill", "prescale":10000, "streams": [ "cosmics_main", "physics_minBias" ]}]
         }
 
     },
