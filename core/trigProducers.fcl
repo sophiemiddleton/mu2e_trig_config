@@ -673,6 +673,7 @@ TrigAprProducers : {
       chCollLabel             : "TTflagBkgHits"
       tcCollLabel             : "TTTZClusterFinder"
       ccCollLabel             : "CaloClusterFast"
+      minNHelixComboHits      : 10
    }
    
    TTAprHelixMerger: {
