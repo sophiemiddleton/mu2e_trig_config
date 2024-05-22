@@ -25,7 +25,7 @@ services.TFileService.fileName : "/dev/null"
 # timing information
 services.TimeTracker : {
   dbOutput : {
-    filename : "runGlobalTrigger.db" #uncomment to create the .db output
+    filename : "" #"runGlobalTrigger.db" #uncomment to create the .db output
     overwrite : true
   }
 }
