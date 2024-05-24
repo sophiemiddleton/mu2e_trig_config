@@ -21,11 +21,25 @@ physics.producers.SelectRecoMCtprDe : {
   HelixSeedCollections  : ["TTHelixMergerDe" ]
 }
 
+physics.producers.SelectRecoMCapr : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTAprKSF" ]
+  HelixSeedCollections  : ["TTAprHelixMerger" ]
+}
+
+physics.producers.SelectRecoMCmprDe : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTMprKSFDe" ]
+  HelixSeedCollections  : ["TTMprHelixMergerDe" ]
+}
+
 #
 #  Add these to the sequences
 #
 physics.tprDe_highP_stopTarg           : [ @sequence::physics.tprDe_highP_stopTarg, SelectRecoMCtprDe]
 physics.cprDe_highP_stopTarg           : [ @sequence::physics.cprDe_highP_stopTarg, SelectRecoMCcprDe]
+physics.mprDe_highP_stopTarg           : [ @sequence::physics.mprDe_highP_stopTarg, SelectRecoMCmprDe]
+physics.apr_highP_stopTarg             : [ @sequence::physics.apr_highP_stopTarg, SelectRecoMCapr]
 #
 # this next produces additional hit-level payload to support MC truth matching.
 # It produces functionally equivalent output as the standard module but is slower, so don't use this script for timing studies
