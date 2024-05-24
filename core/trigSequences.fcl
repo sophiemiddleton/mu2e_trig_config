@@ -1,3 +1,4 @@
+#include "mu2e_trig_config/core/trigMpr.fcl"
 
 BEGIN_PROLOG
 
@@ -15,6 +16,8 @@ BEGIN_PROLOG
 # }
 
 TrigTrkPaths:{
+  mprDe_highP_stopTarg : @local::TrigMpr.De_highP_stopTarg
+
    #trkpatrec tracking
    # tprTimeClusterDe    : [ tprTimeClusterDeEventPrescale,
    #    @sequence::TrigRecoSequences.calReco,

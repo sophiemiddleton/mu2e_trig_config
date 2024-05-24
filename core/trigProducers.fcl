@@ -7,6 +7,7 @@
 #include "Offline/TrkReco/fcl/prolog.fcl"
 #include "Offline/TrkPatRec/fcl/prolog.fcl"
 #include "Offline/CalPatRec/fcl/prolog.fcl"
+#include "mu2e_trig_config/core/trigMpr.fcl"
 
 BEGIN_PROLOG
 
@@ -668,14 +669,14 @@ TrigAprProducers : {
       chCollLabel2               : "TTmakeSH"
       ccCollLabel                : "CaloClusterFast"
    }
-   
+
    TTAprHelixFinder: { @table::CalPatRec.producers.AgnosticHelixFinder
       chCollLabel             : "TTflagBkgHits"
       tcCollLabel             : "TTTZClusterFinder"
       ccCollLabel             : "CaloClusterFast"
       minNHelixComboHits      : 10
    }
-   
+
    TTAprHelixMerger: {
       HelixFinders: [
          "TTAprHelixFinder"
@@ -793,6 +794,7 @@ TrigProducers : {
       @table::TrigCprProducers
       @table::TrigAprProducers
       @table::TrigCstProducers
+      @table::TrigMpr.Producers
    }
 }
 END_PROLOG

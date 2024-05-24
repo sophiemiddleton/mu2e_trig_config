@@ -2,6 +2,7 @@
 # this file includes all the prolog needed to run the reconstruction
 # at the trigger level and the filters used to make the trigger decision
 #------------------------------------------------------------------------------
+#include "mu2e_trig_config/core/trigMpr.fcl"
 BEGIN_PROLOG
 
 ################################################################################
@@ -253,7 +254,7 @@ TrigCprFilters:{
   cprDeHighPStopTargKSFilter: {
     kalSeedCollection: "TTCalSeedFitDe"
     module_type: "KalSeedFilter"
-    KalSeedCuts : [ 
+    KalSeedCuts : [
       { #cuts for downstreeam e-minus
         fitdirection: 0
         fitparticle: 11
@@ -343,7 +344,7 @@ TrigCprFilters:{
   cprDeLowPStopTargKSFilter: {
     kalSeedCollection: "TTCalSeedFitDe"
     module_type: "KalSeedFilter"
-    KalSeedCuts : [ 
+    KalSeedCuts : [
       { #cuts for downstream e-minus
         fitdirection: 0
         fitparticle: 11
@@ -424,7 +425,7 @@ TrigCprFilters:{
       prescaleUsingD0Phi: false
       requireCaloCluster: false
     }
-    
+
   }
 
   cprHelixDeTCFilter: {
@@ -433,7 +434,7 @@ TrigCprFilters:{
     requireCaloCluster: false
     timeClusterCollection: "TTCalTimePeakFinder"
   }
-  
+
   cprHelixUeHSFilter: {
     module_type: "HelixFilter"
     helixSeedCollection: "TTCalHelixMergerUe"
@@ -540,18 +541,18 @@ TrigTprFilters:{
       requireCaloCluster: false
     }
   }
-  
+
   tprDeHighPStopTargTCFilter: {
     minNStrawHits: 15
     module_type: "TimeClusterFilter"
     requireCaloCluster: false
     timeClusterCollection: "TTtimeClusterFinder"
   }
-  
+
   tprDeHighPStopTargKSFilter: {
     module_type: "KalSeedFilter"
     kalSeedCollection: "TTKSFDe"
-    KalSeedCuts : [ 
+    KalSeedCuts : [
       { #cuts for doesntream e-minus
         fitdirection: 0
         fitparticle: 11
@@ -590,7 +591,7 @@ TrigTprFilters:{
       }
     ]
   }
-  
+
   tprDeLowPStopTargHSFilter: {
     module_type: "HelixFilter"
     helixSeedCollection: "TTHelixMergerDe"
@@ -633,7 +634,7 @@ TrigTprFilters:{
       requireCaloCluster: false
     }
   }
-  
+
   tprDeLowPStopTargTCFilter: {
     minNStrawHits: 10
     module_type: "TimeClusterFilter"
@@ -725,7 +726,7 @@ TrigTprFilters:{
       requireCaloCluster: false
     }
   }
-  
+
   tprHelixDeIpaHSFilter: {
     helixSeedCollection: "TTHelixMergerDe"
     module_type: "HelixFilter"
@@ -1005,7 +1006,7 @@ TrigAprFilters:{
   aprHighPStopTargKSFilter: {
     kalSeedCollection: "TTAprKSF"
     module_type: "KalSeedFilter"
-    KalSeedCuts : [ 
+    KalSeedCuts : [
       { #cuts for downstreeam e-minus
         doParticleTypeCheck: false
         doZPropDirCheck: true
@@ -1097,7 +1098,7 @@ TrigAprFilters:{
   aprLowPStopTargKSFilter: {
     kalSeedCollection: "TTAprKSF"
     module_type: "KalSeedFilter"
-    KalSeedCuts : [ 
+    KalSeedCuts : [
       { #cuts for downstreeam e-minus
         doParticleTypeCheck: false
         doZPropDirCheck: true
@@ -1190,7 +1191,7 @@ TrigAprFilters:{
     kalSeedCollection: "TTAprKSF"
     module_type: "KalSeedFilter"
     minNTrks: 2
-    KalSeedCuts : [ 
+    KalSeedCuts : [
       { #cuts for downstreeam e-minus
         doParticleTypeCheck: false
         doZPropDirCheck: true
@@ -1357,6 +1358,7 @@ TrigFilters : {
     @table::TrigCstFilters
     @table::TrigSupFilters
     @table::TrigCalFilters
+    @table::TrigMpr.Filters
   }
 }
 END_PROLOG
