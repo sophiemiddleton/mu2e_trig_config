@@ -24,11 +24,10 @@ services.TFileService.fileName : "/dev/null"
 
 # timing information
 services.TimeTracker : {
-   dbOutput : {
-      filename : ""
-      #	filename : "runGlobalTrigger.db" #uncomment to create the .db output
-      overwrite : true
-   }
+  dbOutput : {
+    filename : "" #"runGlobalTrigger.db" #uncomment to create the .db output
+    overwrite : true
+  }
 }
 
 services.scheduler.wantSummary: true
