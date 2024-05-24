@@ -1,5 +1,4 @@
-#include "mu2e_trig_config/core/trigMpr.fcl"
-
+#include "mu2e_trig_config/core/trigMprSequences.fcl"
 BEGIN_PROLOG
 
 # TrigRecoSequences:{

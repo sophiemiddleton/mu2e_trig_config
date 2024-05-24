@@ -7,7 +7,6 @@
 #include "Offline/TrkReco/fcl/prolog.fcl"
 #include "Offline/TrkPatRec/fcl/prolog.fcl"
 #include "Offline/CalPatRec/fcl/prolog.fcl"
-#include "mu2e_trig_config/core/trigMpr.fcl"
 
 BEGIN_PROLOG
 
@@ -784,7 +783,9 @@ TrigCstProducers : {
       module_type: "MergeTriggerInfo"
    }
 }
-
+END_PROLOG
+#include "mu2e_trig_config/core/trigMpr.fcl"
+BEGIN_PROLOG
 TrigProducers : {
    producers : {
       @table::TrigDAQProducers
