@@ -8,6 +8,14 @@
 
     "trigger_paths" : {
 
+        "mprDe_highP_stopTarg": {
+            "bit" : 210 ,
+            "enabled": 1,
+            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] },
+                                {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }
+                               ]
+        },
+
         "tprDe_highP_stopTarg": {
             "bit" : 100 ,
             "enabled": 1,
@@ -15,6 +23,7 @@
                                 {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }
                                ]
         },
+
         "tprDe_lowP_stopTarg" : {
             "bit": 110 ,
             "enabled": 1,
@@ -80,32 +89,32 @@
 
         "apr_highP_stopTarg"   : {
             "bit" : 180 ,
-            "enabled": 1, 
-            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] }, 
+            "enabled": 1,
+            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] },
                                 {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }
                                ]
         },
-        
+
         "apr_lowP_stopTarg"   : {
             "bit" : 190 ,
-            "enabled": 1, 
-            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] }, 
+            "enabled": 1,
+            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] },
                                 {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }
                                ]
         },
 
          "apr_lowP_stopTarg_multiTrk"   : {
             "bit" : 191 ,
-            "enabled": 1, 
-            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] }, 
+            "enabled": 1,
+            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] },
                                 {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }
                                ]
         },
 
         "aprHelix"   : {
             "bit" : 195 ,
-            "enabled": 1, 
-            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] }, 
+            "enabled": 1,
+            "eventModeConfig": [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_main", "dqm_trigger" ] },
                                 {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_trk_calib" ]          }
                                ]
         },
@@ -156,15 +165,15 @@
         "minBias_SDCount":{
             "bit" : 400 ,
             "enabled": 1,
-            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":10000, "streams": [ "physics_minBias" ]},
-                                 {"eventMode":"OffSpill", "prescale":10000, "streams": [ "cosmics_main", "physics_minBias" ]}]
+            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":1e4, "streams": [ "physics_minBias" ]},
+                                 {"eventMode":"OffSpill", "prescale":1e4, "streams": [ "cosmics_main", "physics_minBias" ]}]
         },
 
         "minBias_CDCount":{
             "bit" : 410 ,
             "enabled": 1,
-            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":10000, "streams": [ "physics_minBias" ]},
-                                 {"eventMode":"OffSpill", "prescale":10000, "streams": [ "cosmics_main", "physics_minBias" ]}]
+            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":1e4, "streams": [ "physics_minBias" ]},
+                                 {"eventMode":"OffSpill", "prescale":1e4, "streams": [ "cosmics_main", "physics_minBias" ]}]
         }
 
     },
