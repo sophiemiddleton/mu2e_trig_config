@@ -7,7 +7,6 @@
 #include "Offline/TrkReco/fcl/prolog.fcl"
 #include "Offline/TrkPatRec/fcl/prolog.fcl"
 #include "Offline/CalPatRec/fcl/prolog.fcl"
-#include "Offline/CosmicReco/fcl/prolog.fcl"
 
 BEGIN_PROLOG
 
@@ -772,9 +771,20 @@ TrigCstProducers : {
       t0offset: 0
    }
    CstSimpleTimeCluster: {
-      @table::SimpleTimeCluster
       ComboHitCollection: "TTmakePH"
       TestFlag: false
+      module_type: "SimpleTimeCluster"
+      HitSelectionBits  : ["EnergySelection"]
+      HitBackgroundBits : ["Background","Noisy","Dead"]
+      debugLevel : 0
+      minNStrawHits : 2
+      minNPanels : 1
+      TimeWindow : 100
+      useTimeWindow : false
+      TimeStep : 20
+      useTimeStep : true
+      UseOnlyOnePanel : false
+      UseOnlyOnePlane : false
    }
 
    cstTimeClusterTriggerInfoMerger: {
