@@ -805,7 +805,18 @@ TrigCstProducers : {
       maxNiter: 1000
       minNComboHits: 8
       minNHitsTimeCluster: 0
-      minNStrawHits: 4
+      DoDrift: true
+      DriftRes: 10
+      LineFinderTag: "CstLineFinder"
+      MinuitPrecision: -1
+      MinuitTolerance: 5e-1
+      TimeClusterCollection: "CstSimpleTimeCluster"
+      UseChiFit: false
+      UseLineFinder: true
+      UseTime: true
+      minNComboHits: 0
+      minNHitsTimeCluster: 0
+      minNStrawHits: 2
       module_type: "CosmicTrackFinder"
    }
    CstLineFinder: {
