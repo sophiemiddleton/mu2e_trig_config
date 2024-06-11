@@ -54,7 +54,7 @@ physics.producers.TTmakePH.StrawHitMask          : ["Dead"]
 outputs : {
   TriggeredOutput : {
     module_type : RootOutput
-    SelectEvents : @local::Digitize.SignalTriggers
+    SelectEvents : [ "*highP_stopTarg" ]
     outputCommands : [ "drop *_*_*_*",
       @sequence::Digitize.GeneralProducts,
       @sequence::Digitize.DigiProducts,
