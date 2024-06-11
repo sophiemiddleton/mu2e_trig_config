@@ -1,9 +1,0 @@
-# define the Robust Multi-helix pat. rec. modules
-BEGIN_PROLOG
-TrigMpr : {
-  De_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen,
-    mprDeHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
-    @sequence::TrigRecoSequences.trkPrepareHits,
-    TTtimeClusterFinder, mprDeHighPStopTargTCFilter, TTRobustMultiHelixFinder, TTMprHelixMergerDe, mprDeHighPStopTargHSFilter, TTMprKSFDe, mprDeHighPStopTargKSFilter, mprDeHighPStopTargTriggerInfoMerger ]
-}
-END_PROLOG
