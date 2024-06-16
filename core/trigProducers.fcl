@@ -130,36 +130,36 @@ TrigTrkProducers : {
     ProtonBunchTimeTag : "EWMProducer"
     TrackerFragmentTag : "daq:trk"
 
-  }
-  TTmakePH: {
-    @table::makePH
-    TestFlag   : false # not needed, since TTmakeSH is filtering
-    FilterHits : false
-    ComboHitCollection    : "TTmakeSH"
-    StrawHitSelectionBits : []
-    StrawHitMask          : []
-  }
-  # combine panel hits in a station
-  TTmakeSTH : {
-    @table::makeSTH
-    TestFlag           : false
-    FilterHits         : true
-    ComboHitCollection : "TTmakePH"
-  }
+   }
+   TTmakePH: {
+      @table::TrkHitReco.producers.makePH
+      TestFlag   : false # not needed, since TTmakeSH is filtering
+      FilterHits : false
+      ComboHitCollection    : "TTmakeSH"
+      StrawHitSelectionBits : []
+      StrawHitMask          : []
+   }
+   # combine panel hits in a station
+   TTmakeSTH : {
+      @table::TrkHitReco.producers.makeSTH
+      TestFlag           : false
+      FilterHits         : true
+      ComboHitCollection : "TTmakePH"
+   }
 
-  TTmakeSHFromDigi: {
-    @table::makeSH
-    FitType                 : 5
-    FilterHits              : true
-    WriteStrawHitCollection : false
-    StrawDigiADCWaveformCollectionTag : "notUsed"
-  }
+   TTmakeSHFromDigi: {
+      @table::TrkHitReco.producers.makeSH
+      FitType                 : 5
+      FilterHits              : true
+      WriteStrawHitCollection : false
+      StrawDigiADCWaveformCollectionTag : "notUsed"
+   }
 
-  TTflagBkgHits: {
-    @table::FlagBkgHits
-    ComboHitCollection   : "TTmakeSTH"
-    FilterHits           : true
-  }
+   TTflagBkgHits: {
+      @table::TrkHitReco.producers.FlagBkgHits
+      ComboHitCollection   : "TTmakeSTH"
+      FilterHits           : true
+   }
 
   TTDeltaFinder: {
     @table::CalPatRec.producers.DeltaFinder
@@ -250,28 +250,28 @@ Mu2eKinKalTrigger : {
 #
 ################################################################################
 TrigTprProducers : {
-  TTtimeClusterFinder: {
-    @table::TimeClusterFinder
-    ComboHitCollection     : "TTflagBkgHits"
-    CaloClusterCollection  : "CaloClusterFast"
-    TestFlag               : false
-    T0Calculator           : {
-      TrkToCaloTimeOffset : 0.
-      CaloTimeErr : 0.5
-    }
-  }
+   TTtimeClusterFinder: {
+      @table::TrkPatRec.TimeClusterFinder
+      ComboHitCollection     : "TTflagBkgHits"
+      CaloClusterCollection  : "CaloClusterFast"
+      TestFlag               : false
+      T0Calculator           : {
+         TrkToCaloTimeOffset : 0.
+         CaloTimeErr : 0.5
+      }
+   }
 
-  TTtimeClusterFinderUe: {
-    @table::TimeClusterFinder
-    ComboHitCollection     : "TTflagBkgHits"
-    CaloClusterCollection  : "CaloClusterFast"
-    TestFlag               : false
-    AveragePitch : -0.63
-    T0Calculator           : {
-      TrkToCaloTimeOffset : 0.
-      CaloTimeErr : 0.5
-    }
-  }
+   TTtimeClusterFinderUe: {
+      @table::TrkPatRec.TimeClusterFinder
+      ComboHitCollection     : "TTflagBkgHits"
+      CaloClusterCollection  : "CaloClusterFast"
+      TestFlag               : false
+      AveragePitch : -0.63
+      T0Calculator           : {
+         TrkToCaloTimeOffset : 0.
+         CaloTimeErr : 0.5
+      }
+   }
 
   TThelixFinder: {
     doSingleOutput: true
