@@ -1,4 +1,3 @@
-
 BEGIN_PROLOG
 
 # TrigRecoSequences:{
@@ -15,6 +14,14 @@ BEGIN_PROLOG
 # }
 
 TrigTrkPaths:{
+  mprDe_highP_stopTarg : [
+    @sequence::TrigRecoSequences.artFragmentsGen,
+    mprDeHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
+    @sequence::TrigRecoSequences.trkPrepareHits,
+    TTtimeClusterFinder, mprDeHighPStopTargTCFilter, TTRobustMultiHelixFinder,
+    TTMprHelixMergerDe, mprDeHighPStopTargHSFilter, TTMprKSFDe,
+    mprDeHighPStopTargKSFilter, mprDeHighPStopTargTriggerInfoMerger ]
+
    #trkpatrec tracking
    # tprTimeClusterDe    : [ tprTimeClusterDeEventPrescale,
    #    @sequence::TrigRecoSequences.calReco,

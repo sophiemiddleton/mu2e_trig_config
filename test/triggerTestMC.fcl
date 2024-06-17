@@ -9,23 +9,37 @@
 #
 #  Add MC truth matching for the highP_stopTarg triggers
 #
-physics.producers.SelectRecoMCcprDe : {
+physics.producers.SelectRecoMCCprDe : {
   @table::CommonMCTrigger.TTSelectRecoMC
   KalSeedCollections  : [ "TTCalSeedFitDe" ]
   HelixSeedCollections  : ["TTCalHelixMergerDe" ]
 }
 
-physics.producers.SelectRecoMCtprDe : {
+physics.producers.SelectRecoMCTprDe : {
   @table::CommonMCTrigger.TTSelectRecoMC
   KalSeedCollections  : [ "TTKSFDe" ]
   HelixSeedCollections  : ["TTHelixMergerDe" ]
 }
 
+physics.producers.SelectRecoMCApr : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTAprKSF" ]
+  HelixSeedCollections  : ["TTAprHelixMerger" ]
+}
+
+physics.producers.SelectRecoMCMprDe : {
+  @table::CommonMCTrigger.TTSelectRecoMC
+  KalSeedCollections  : [ "TTMprKSFDe" ]
+  HelixSeedCollections  : ["TTMprHelixMergerDe" ]
+}
+
 #
 #  Add these to the sequences
 #
-physics.tprDe_highP_stopTarg           : [ @sequence::physics.tprDe_highP_stopTarg, SelectRecoMCtprDe]
-physics.cprDe_highP_stopTarg           : [ @sequence::physics.cprDe_highP_stopTarg, SelectRecoMCcprDe]
+physics.tprDe_highP_stopTarg           : [ @sequence::physics.tprDe_highP_stopTarg, SelectRecoMCTprDe]
+physics.cprDe_highP_stopTarg           : [ @sequence::physics.cprDe_highP_stopTarg, SelectRecoMCCprDe]
+physics.mprDe_highP_stopTarg           : [ @sequence::physics.mprDe_highP_stopTarg, SelectRecoMCMprDe]
+physics.apr_highP_stopTarg             : [ @sequence::physics.apr_highP_stopTarg, SelectRecoMCApr]
 #
 # this next produces additional hit-level payload to support MC truth matching.
 # It produces functionally equivalent output as the standard module but is slower, so don't use this script for timing studies
@@ -40,7 +54,7 @@ physics.producers.TTmakePH.StrawHitMask          : ["Dead"]
 outputs : {
   TriggeredOutput : {
     module_type : RootOutput
-    SelectEvents : @local::Digitize.SignalTriggers
+    SelectEvents : [ "*highP_stopTarg" ]
     outputCommands : [ "drop *_*_*_*",
       @sequence::Digitize.GeneralProducts,
       @sequence::Digitize.DigiProducts,
