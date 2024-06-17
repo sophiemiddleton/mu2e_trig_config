@@ -1291,7 +1291,7 @@ TrigMprFilters : {
     helixSeedCollection: "TTMprHelixMergerDe"
     posHelicitySelection : {
       configured: true
-      doHelicityCheck: false
+      doHelicityCheck: true
       maxAbsLambda: 300
       maxChi2PhiZ: 8
       maxChi2XY: 8
@@ -1310,7 +1310,7 @@ TrigMprFilters : {
     }
     negHelicitySelection : {
       configured: true
-      doHelicityCheck: false
+      doHelicityCheck: true
       maxAbsLambda: 330
       maxChi2PhiZ: 8
       maxChi2XY: 8

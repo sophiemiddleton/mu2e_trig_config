@@ -748,7 +748,7 @@ TrigMprProducers : {
     DiagLevel               : 0
   }
   TTMprHelixMergerDe: {
-    HelixFinders: [ "TTRobustMultiHelixFinder:Positive" ]
+    HelixFinders: [ "TTRobustMultiHelixFinder:Positive", "TTRobustMultiHelixFinder:Negative" ]
     debugLevel: 0
     deltanh: 5
     module_type: "MergeHelices"
