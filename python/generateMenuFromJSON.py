@@ -171,7 +171,7 @@ def generateMenu(evtMode, outdir,  dictMenu, menuName, dictStreams, proc_name, i
         for dd in vv:
             for s in dd['streams']:
                 if path not in dictStreams[s]:
-                    trg_path = proc_name+":"+path
+                    trg_path = proc_name+"*:"+path
                     dictStreams[s].append(trg_path)
         
     #
