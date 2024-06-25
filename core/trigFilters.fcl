@@ -10,6 +10,15 @@ BEGIN_PROLOG
 #
 ################################################################################
 TrigCprFilters:{
+  cprDeHighPStopTargPS  : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  cprDeLowPStopTargPS   : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  cprHelixDePS          : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  cprHelixUePS          : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+
   TTCalHelixFinderDe: {
     doSingleOutput: true
     HelixFinderAlg: {
@@ -491,12 +500,18 @@ TrigCprFilters:{
 #
 ################################################################################
 TrigTprFilters:{
-  tprDeLowPStopTargPS        : { module_type: @nil}
-  tprDeHighPStopTargPS       : { module_type: @nil}
-  tprHelixDePS               : { module_type: @nil}
-  tprHelixUePS               : { module_type: @nil}
-  tprHelixDeIpaPS            : { module_type: @nil}
-  tprHelixDeIpaPhiScaledPS   : { module_type: @nil}
+  tprDeLowPStopTargPS        : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  tprDeHighPStopTargPS       : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  tprHelixDePS               : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  tprHelixUePS               : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  tprHelixDeIpaPS            : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  tprHelixDeIpaPhiScaledPS   : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
 
   tprDeHighPStopTargHSFilter: {
     module_type: "HelixFilter"
@@ -860,6 +875,11 @@ TrigTprFilters:{
 #
 ################################################################################
 TrigCstFilters:{
+  cstPS            : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  cstTimeClusterPS : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+
   cstSDCountFilter: {
     caloDigiCollection: "notUsed"
     maxCaloEnergy: -1
@@ -915,6 +935,11 @@ TrigCstFilters:{
 #
 ################################################################################
 TrigSupFilters:{
+  minBiasSDCountPS : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  minBiasCDCountPS : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+
   minBiasCDCountFilter: {
     caloDigiCollection: "CaloDigiMaker"
     maxCaloEnergy: -1
@@ -950,9 +975,12 @@ TrigSupFilters:{
 #
 ################################################################################
 TrigAprFilters:{
-  aprLowPStopTargPS        : { module_type: @nil}
-  aprHighPStopTargPS       : { module_type: @nil}
-  aprLowPStopTargMultiTrkPS: { module_type: @nil}
+  aprLowPStopTargPS        : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  aprHighPStopTargPS       : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  aprLowPStopTargMultiTrkPS: { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
 
   aprHighPStopTargHSFilter: {
     module_type: "HelixFilter"
@@ -1286,6 +1314,9 @@ TrigAprFilters:{
 #
 ################################################################################
 TrigMprFilters : {
+  mprDeHighPStopTargPS  : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+
   mprDeHighPStopTargHSFilter: {
     module_type: "HelixFilter"
     helixSeedCollection: "TTMprHelixMergerDe"
@@ -1385,6 +1416,15 @@ TrigMprFilters : {
 #
 ################################################################################
 TrigCalFilters:{
+  caloFastCosmicPS    : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  caloFastMVANNCEPS   : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  caloFastPhotonPS    : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  caloFastRMCPS       : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+
   caloFastCosmicFilter: {
     CaloClusterModuleLabel: "CaloClusterFast"
     InnerRadius: 460
