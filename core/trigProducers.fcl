@@ -51,7 +51,7 @@ TrigCalProducers : {
   {
     module_type   : "CaloHitsFromFragments"
     diagLevel     : 0
-    caloTag       : "" #"daq:calo"
+    caloTag       : "artFragFromDTCEvents"
     digiSampling  : 5
     deltaTPulses  : 5.
     nPEperMeV     : 30
@@ -107,9 +107,7 @@ TrigCalProducers : {
 TrigTrkProducers : {
   TTmakeSH: {
     diagLevel: 0
-    module_type: "StrawRecoFromFragments"
-    trkTag: "daq:trk"
-    useTrkADC: 0
+    module_type: "StrawHitRecoFromFragments"
     printLevel : 0
     FitType : 5
     UseCalorimeter : false
@@ -126,9 +124,9 @@ TrigTrkProducers : {
     FilterHits : true
     WriteStrawHitCollection : false
     FlagCrossTalk : false
-    CaloClusterCollectionTag : "CaloClusterFast"
+    CaloClusterCollectionTag : "notNow"
     ProtonBunchTimeTag : "EWMProducer"
-    TrackerFragmentTag : "daq:trk"
+    TrackerDataDecoderTag : "artFragFromDTCEvents"
 
    }
    TTmakePH: {
