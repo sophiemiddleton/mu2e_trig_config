@@ -1,4 +1,3 @@
-
 BEGIN_PROLOG
 
 # TrigRecoSequences:{
@@ -15,6 +14,14 @@ BEGIN_PROLOG
 # }
 
 TrigTrkPaths:{
+  mprDe_highP_stopTarg : [
+    @sequence::TrigRecoSequences.artFragmentsGen,
+    mprDeHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
+    @sequence::TrigRecoSequences.trkPrepareHits,
+    TTtimeClusterFinder, mprDeHighPStopTargTCFilter, TTRobustMultiHelixFinder,
+    TTMprHelixMergerDe, mprDeHighPStopTargHSFilter, TTMprKSFDe,
+    mprDeHighPStopTargKSFilter, mprDeHighPStopTargTriggerInfoMerger ]
+
    #trkpatrec tracking
    # tprTimeClusterDe    : [ tprTimeClusterDeEventPrescale,
    #    @sequence::TrigRecoSequences.calReco,
@@ -143,45 +150,63 @@ TrigTrkPaths:{
    #    TTtimeClusterFinder, tprDeHighPStopTargTCFilter, TThelixFinder, TTHelixMergerDe, tprDeHighPStopTargHSFilter,
    #    TTKSFDe, tprDeHighPStopTargKSFilter, TTKFFDe, tprDeHighPStopTargKFFilter ]
    # # add sequences for upstream, calibration, ...  FIXME!
-   apr_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen, 
+   apr_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
-      TTTZClusterFinder, aprHighPStopTargTCFilter, 
+      TTTZClusterFinder, aprHighPStopTargTCFilter,
       TTAprHelixFinder, TTAprHelixMerger, aprHighPStopTargHSFilter,
       TTAprKSF, aprHighPStopTargKSFilter, aprHighPStopTargTriggerInfoMerger ]
 
-   apr_lowP_stopTarg       : [ @sequence::TrigRecoSequences.artFragmentsGen,  
+   apr_highP_stopTarg_timing0   : [ @sequence::TrigRecoSequences.artFragmentsGen,
+      aprHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
+      @sequence::TrigRecoSequences.trkPrepareHits,
+      TTTZClusterFinder, aprHighPStopTargTCFilter,
+      TTAprHelixFinder, TTAprHelixMerger, aprHighPStopTargHSFilter,
+      TTAprKSF]
+
+  apr_highP_stopTarg_timing1   : [ @sequence::TrigRecoSequences.artFragmentsGen,
+      aprHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
+      @sequence::TrigRecoSequences.trkPrepareHits,
+      TTTZClusterFinder, aprHighPStopTargTCFilter,
+      TTAprHelixFinder, TTAprHelixMerger]
+
+  apr_highP_stopTarg_timing2   : [ @sequence::TrigRecoSequences.artFragmentsGen,
+      aprHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
+      @sequence::TrigRecoSequences.trkPrepareHits,
+      TTTZClusterFinder]
+
+   apr_lowP_stopTarg       : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprLowPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
-      TTTZClusterFinder, aprLowPStopTargTCFilter, TTAprHelixFinder, TTAprHelixMerger, 
+      TTTZClusterFinder, aprLowPStopTargTCFilter, TTAprHelixFinder, TTAprHelixMerger,
       aprLowPStopTargHSFilter, TTAprKSF, aprLowPStopTargKSFilter, aprLowPStopTargTriggerInfoMerger ]
 
-   apr_lowP_stopTarg_multiTrk       : [ @sequence::TrigRecoSequences.artFragmentsGen,  
+   apr_lowP_stopTarg_multiTrk       : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprLowPStopTargMultiTrkPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
-      TTTZClusterFinder, aprLowPStopTargMultiTrkTCFilter, TTAprHelixFinder, TTAprHelixMerger, 
+      TTTZClusterFinder, aprLowPStopTargMultiTrkTCFilter, TTAprHelixFinder, TTAprHelixMerger,
       aprLowPStopTargMultiTrkHSFilter, TTAprKSF, aprLowPStopTargMultiTrkKSFilter, aprLowPStopTargMultiTrkTriggerInfoMerger ]
 
-   apr_lowP_stopTarg_timing0       : [ @sequence::TrigRecoSequences.artFragmentsGen,  
+   apr_lowP_stopTarg_timing0       : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprLowPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
-      TTTZClusterFinder, aprLowPStopTargTCFilter, TTAprHelixFinder, TTAprHelixMerger, 
+      TTTZClusterFinder, aprLowPStopTargTCFilter, TTAprHelixFinder, TTAprHelixMerger,
       aprLowPStopTargHSFilter, TTAprKSF ]
 
-   apr_lowP_stopTarg_timing1       : [ @sequence::TrigRecoSequences.artFragmentsGen,  
+   apr_lowP_stopTarg_timing1       : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprLowPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTTZClusterFinder, aprLowPStopTargTCFilter, TTAprHelixFinder, TTAprHelixMerger ]
 
-   apr_lowP_stopTarg_timing2       : [ @sequence::TrigRecoSequences.artFragmentsGen,  
+   apr_lowP_stopTarg_timing2       : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprLowPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTTZClusterFinder ]
 
-   aprHelix          : [ @sequence::TrigRecoSequences.artFragmentsGen,  
+   aprHelix          : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprLowPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
-      TTTZClusterFinder, aprHelixTCFilter, TTAprHelixFinder, TTAprHelixMerger, 
+      TTTZClusterFinder, aprHelixTCFilter, TTAprHelixFinder, TTAprHelixMerger,
       aprHelixHSFilter, aprHelixTriggerInfoMerger ]
 
 }
@@ -206,11 +231,6 @@ TrigCaloPaths: {
       "caloFastRMCPS",
       @sequence::TrigRecoSequences.calReco,
       "caloFastRMCFilter"
-   ]
-   minBias_Source: [ @sequence::TrigRecoSequences.artFragmentsGen,
-      "minBiasSourcePS",
-      @sequence::TrigRecoSequences.calPrepareHits,
-      "minBiasSourceFilter"
    ]
 
 }
