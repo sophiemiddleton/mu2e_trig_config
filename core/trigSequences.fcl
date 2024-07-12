@@ -207,10 +207,10 @@ TrigCaloPaths: {
       @sequence::TrigRecoSequences.calReco,
       "caloFastRMCFilter"
    ]
-   minBias_Source: [ @sequence::TrigRecoSequences.artFragmentsGen,
-      "minBiasSourcePS",
+   caloHitRec_n0Source: [ @sequence::TrigRecoSequences.artFragmentsGen,
+      "caloHitRecn0SourcePS",
       @sequence::TrigRecoSequences.calPrepareHits,
-      "minBiasSourceFilter"
+      "caloHitRecN0SourceFilter"
    ]
 
 }

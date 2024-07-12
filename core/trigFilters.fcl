@@ -1482,7 +1482,7 @@ TrigCalFilters:{
   }
   
   
-   minBiasSourceFilter: {
+   caloHitRecN0SourceFilter: {
         caloDigiCollection: "CaloDigiMaker"
         MaxDigiADC: 1e6 // set higher for completeness
         MinDigiADC: 0 //should we set a minimum
