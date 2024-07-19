@@ -66,7 +66,12 @@ TrigTrkPaths:{
    cprDe_highP_stopTarg           : [ @sequence::TrigRecoSequences.artFragmentsGen,  cprDeHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTCalTimePeakFinder, cprDeHighPStopTargTCFilter, TTCalHelixFinderDe, TTCalHelixMergerDe, cprDeHighPStopTargHSFilter,
-      TTCalSeedFitDe, cprDeHighPStopTargKSFilter, cprDeHighPStopTargTriggerInfoMerger ]
+    TTCalSeedFitDe, cprDeHighPStopTargKSFilter, cprDeHighPStopTargTriggerInfoMerger ]
+  
+  cprDe_highP               : [ @sequence::TrigRecoSequences.artFragmentsGen,  cprDeHighPPS, @sequence::TrigRecoSequences.calReco,
+      @sequence::TrigRecoSequences.trkPrepareHits,
+      TTCalTimePeakFinder, cprDeHighPTCFilter, TTCalHelixFinderDe, TTCalHelixMergerDe, cprDeHighPHSFilter,
+      TTCalSeedFitDe, cprDeHighPKSFilter, cprDeHighPTriggerInfoMerger ]
 
    cprDe_lowP_stopTarg       : [ @sequence::TrigRecoSequences.artFragmentsGen,  cprDeLowPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
@@ -156,6 +161,13 @@ TrigTrkPaths:{
       TTTZClusterFinder, aprHighPStopTargTCFilter,
       TTAprHelixFinder, TTAprHelixMerger, aprHighPStopTargHSFilter,
       TTAprKSF, aprHighPStopTargKSFilter, aprHighPStopTargTriggerInfoMerger ]
+
+  apr_highP                     : [ @sequence::TrigRecoSequences.artFragmentsGen,
+      aprHighPPS, @sequence::TrigRecoSequences.calReco,
+      @sequence::TrigRecoSequences.trkPrepareHits,
+      TTTZClusterFinder, aprHighPTCFilter,
+      TTAprHelixFinder, TTAprHelixMerger, aprHighPHSFilter,
+      TTAprKSF, aprHighPKSFilter, aprHighPTriggerInfoMerger ]
 
    apr_highP_stopTarg_timing0   : [ @sequence::TrigRecoSequences.artFragmentsGen,
       aprHighPStopTargPS, @sequence::TrigRecoSequences.calReco,

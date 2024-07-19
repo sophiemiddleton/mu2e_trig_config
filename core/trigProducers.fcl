@@ -387,7 +387,7 @@ TrigTprProducers : {
     }
     TimeClusterCollection: "TTtimeClusterFinder"
     UpdateStereo: false
-    maxEDepAvg: 2.5
+    maxEDepAvg: 0.0025
     UpdateStereoHits: false
     UseHitMVA: false
     UseTripletArea: false
@@ -567,7 +567,7 @@ TrigTprProducers : {
     }
     TimeClusterCollection: "TTtimeClusterFinderUe"
     UpdateStereo: false
-    maxEDepAvg: 2.5
+    maxEDepAvg: 0.0025
     UpdateStereoHits: false
     UseHitMVA: false
     UseTripletArea: false
@@ -645,6 +645,9 @@ TrigCprProducers : {
   cprDeHighPStopTargTriggerInfoMerger: {
     module_type: "MergeTriggerInfo"
   }
+  cprDeHighPTriggerInfoMerger: {
+    module_type: "MergeTriggerInfo"
+  }
   cprDeLowPStopTargTriggerInfoMerger: {
     module_type: "MergeTriggerInfo"
   }
@@ -670,7 +673,8 @@ TrigAprProducers : {
     tcCollLabel             : "TTTZClusterFinder"
     ccCollLabel             : "CaloClusterFast"
     minNHelixComboHits      : 10
-    maxEDepAvg              : 2.5
+    maxEDepAvg              : 0.0025
+    maxNHitsRatio           : 1.5
   }
 
   TTAprHelixMerger: {
@@ -702,6 +706,9 @@ TrigAprProducers : {
   }
 
   aprHighPStopTargTriggerInfoMerger: {
+    module_type: "MergeTriggerInfo"
+  }
+  aprHighPTriggerInfoMerger: {
     module_type: "MergeTriggerInfo"
   }
   aprLowPStopTargTriggerInfoMerger: {
