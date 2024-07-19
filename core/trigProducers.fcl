@@ -387,6 +387,7 @@ TrigTprProducers : {
     }
     TimeClusterCollection: "TTtimeClusterFinder"
     UpdateStereo: false
+    maxEDepAvg: 2.5
     UpdateStereoHits: false
     UseHitMVA: false
     UseTripletArea: false
@@ -566,6 +567,7 @@ TrigTprProducers : {
     }
     TimeClusterCollection: "TTtimeClusterFinderUe"
     UpdateStereo: false
+    maxEDepAvg: 2.5
     UpdateStereoHits: false
     UseHitMVA: false
     UseTripletArea: false
@@ -668,6 +670,7 @@ TrigAprProducers : {
     tcCollLabel             : "TTTZClusterFinder"
     ccCollLabel             : "CaloClusterFast"
     minNHelixComboHits      : 10
+    maxEDepAvg              : 2.5
   }
 
   TTAprHelixMerger: {
