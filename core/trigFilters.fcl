@@ -50,7 +50,6 @@ TrigCprFilters:{
       maxPanelToHelixDPhi: 1.309
       maxXDPhi: 5
       maxZTripletSearch: 0
-      bz: 0.0
       minAbsTanDip: 3e-1
       minArea: 5000
       minDeltaNShPatRec: 2
@@ -62,7 +61,6 @@ TrigCprFilters:{
       nHitsMaxPerPanel: 1
       plotall: false
       sigmaPhi: 1.636e-1
-      # smartTag: 1
       targetconsistent: 0
       usetarget: true
       weight3D: 1.2e-1
@@ -72,7 +70,6 @@ TrigCprFilters:{
       zWeights: false
     }
     StrawHitCollectionLabel: "TTflagBkgHits"
-    # StrawHitFlagCollectionLabel: "DeltaFinder:ComboHits"
     TimeClusterCollectionLabel: "TTCalTimePeakFinder"
     debugLevel: 0
     diagLevel: 0
@@ -128,7 +125,6 @@ TrigCprFilters:{
       maxPanelToHelixDPhi: 1.309
       maxXDPhi: 5
       maxZTripletSearch: 0
-      bz: 0.0
       minAbsTanDip: 3e-1
       minArea: 5000
       minDeltaNShPatRec: 2
@@ -140,7 +136,6 @@ TrigCprFilters:{
       nHitsMaxPerPanel: 1
       plotall: false
       sigmaPhi: 1.636e-1
-      # smartTag: 1
       targetconsistent: 0
       usetarget: true
       weight3D: 1.2e-1
@@ -150,7 +145,6 @@ TrigCprFilters:{
       zWeights: false
     }
     StrawHitCollectionLabel: "TTflagBkgHits"
-    # StrawHitFlagCollectionLabel: "DeltaFinder:ComboHits"
     TimeClusterCollectionLabel: "TTCalTimePeakFinderUe"
     debugLevel: 0
     diagLevel: 0
