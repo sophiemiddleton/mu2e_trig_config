@@ -165,6 +165,11 @@ TrigTrkProducers : {
     sschCollTag                   : TTmakeSH                # input coll
     writeFilteredComboHits        : 1
   }
+
+  TTHelixFinderParams: {
+    @table::TrkHitReco.HelixFinderParams
+    maxEDepAvg : 0.0025
+  }
 }
 
 ################################################################################
@@ -387,7 +392,7 @@ TrigTprProducers : {
     }
     TimeClusterCollection: "TTtimeClusterFinder"
     UpdateStereo: false
-    maxEDepAvg: 0.0025
+    maxEDepAvg: @local::TrigTrkProducers.TTHelixFinderParams.maxEDepAvg
     UpdateStereoHits: false
     UseHitMVA: false
     UseTripletArea: false
@@ -567,7 +572,7 @@ TrigTprProducers : {
     }
     TimeClusterCollection: "TTtimeClusterFinderUe"
     UpdateStereo: false
-    maxEDepAvg: 0.0025
+    maxEDepAvg: @local::TrigTrkProducers.TTHelixFinderParams.maxEDepAvg
     UpdateStereoHits: false
     UseHitMVA: false
     UseTripletArea: false
@@ -577,6 +582,9 @@ TrigTprProducers : {
   }
 
   tprDeHighPStopTargTriggerInfoMerger: {
+    module_type: "MergeTriggerInfo"
+  }
+  tprDeHighPTriggerInfoMerger: {
     module_type: "MergeTriggerInfo"
   }
   tprDeLowPStopTargTriggerInfoMerger: {
@@ -673,7 +681,7 @@ TrigAprProducers : {
     tcCollLabel             : "TTTZClusterFinder"
     ccCollLabel             : "CaloClusterFast"
     minNHelixComboHits      : 10
-    maxEDepAvg              : 0.0025
+    maxEDepAvg              : @local::TrigTrkProducers.TTHelixFinderParams.maxEDepAvg
     maxNHitsRatio           : 1.5
   }
 
@@ -754,6 +762,7 @@ TrigMprProducers : {
     MinStrawHits            : 10
     NMaxTrkIter             : 3
     DiagLevel               : 0
+    maxEDepAvg              : @local::TrigTrkProducers.TTHelixFinderParams.maxEDepAvg
   }
   TTMprHelixMergerDe: {
     HelixFinders: [ "TTRobustMultiHelixFinder:Positive", "TTRobustMultiHelixFinder:Negative" ]

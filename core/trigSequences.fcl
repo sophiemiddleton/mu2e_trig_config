@@ -32,6 +32,10 @@ TrigTrkPaths:{
       tprDeHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTtimeClusterFinder, tprDeHighPStopTargTCFilter, TThelixFinder, TTHelixMergerDe, tprDeHighPStopTargHSFilter, TTKSFDe, tprDeHighPStopTargKSFilter, tprDeHighPStopTargTriggerInfoMerger ]
+   tprDe_highP           : [ @sequence::TrigRecoSequences.artFragmentsGen,
+      tprDeHighPPS, @sequence::TrigRecoSequences.calReco,
+      @sequence::TrigRecoSequences.trkPrepareHits,
+      TTtimeClusterFinder, tprDeHighPTCFilter, TThelixFinder, TTHelixMergerDe, tprDeHighPHSFilter, TTKSFDe, tprDeHighPKSFilter, tprDeHighPTriggerInfoMerger ]
    tprDe               : [ tprDeHighPStopTargPS, @sequence::TrigRecoSequences.calReco,
       @sequence::TrigRecoSequences.trkPrepareHits,
       TTtimeClusterFinder, tprDeHighPStopTargTCFilter, TThelixFinder, TTHelixMergerDe, tprDeHighPStopTargHSFilter, TTKSFDe, tprDeHighPStopTargKSFilter, tprDeHighPStopTargTriggerInfoMerger ]

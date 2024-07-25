@@ -78,7 +78,7 @@ TrigCprFilters:{
       mcUtils: {
         strawDigiMCCollTag: "compressDigiMCs"
         tool_type: "TrkPatRecMcUtils"
-        comboHitCollTag: "makeSH"
+        comboHitCollTag: "TTmakeSH"
       }
       tool_type: "CalHelixFinderDiag"
     }
@@ -326,7 +326,7 @@ TrigCprFilters:{
       maxD0: 600
       maxMomentum: 500
       maxNLoops: 30
-      minAbsLambda: 140
+      minAbsLambda: 50
       minD0: -600
       minHitRatio: 4e-1
       minMomentum: 70
@@ -345,7 +345,7 @@ TrigCprFilters:{
       maxD0: 600
       maxMomentum: 500
       maxNLoops: 30
-      minAbsLambda: 100
+      minAbsLambda: 50
       minD0: -600
       minHitRatio: 4e-1
       minMomentum: 60
@@ -608,6 +608,8 @@ TrigTprFilters:{
       eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
   tprDeHighPStopTargPS       : { module_type: PrescaleEvent
       eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
+  tprDeHighPPS               : { module_type: PrescaleEvent
+      eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
   tprHelixDePS               : { module_type: PrescaleEvent
       eventModeConfig : [  { eventMode: OnSpill prescale:-1}, { eventMode: OffSpill prescale:-1} ]}
   tprHelixUePS               : { module_type: PrescaleEvent
@@ -700,6 +702,99 @@ TrigTprFilters:{
         maxMomentum: 500
         maxTanDip: 100
         minD0: -200
+        minFitCons: -1
+        minMomentum: 70
+        minNStrawHits: 15
+        minT0: 0
+        minTanDip: 0
+        requireCaloCluster: false
+      }
+    ]
+  }
+
+  tprDeHighPHSFilter: {
+    module_type: "HelixFilter"
+    helixSeedCollection: "TTHelixMergerDe"
+    posHelicitySelection : {
+      configured: true
+      doHelicityCheck: false
+      maxAbsLambda: 1000
+      maxChi2PhiZ: 8
+      maxChi2XY: 8
+      maxD0: 600
+      maxMomentum: 500
+      maxNLoops: 30
+      minAbsLambda: 50
+      minD0: -600
+      minHitRatio: 4e-1
+      minMomentum: 70
+      minNLoops: 0
+      minNStrawHits: 15
+      minPt: 0
+      prescaleUsingD0Phi: false
+      requireCaloCluster: false
+    }
+    negHelicitySelection : {
+      configured: true
+      doHelicityCheck: false
+      maxAbsLambda: 1000
+      maxChi2PhiZ: 8
+      maxChi2XY: 8
+      maxD0: 600
+      maxMomentum: 500
+      maxNLoops: 30
+      minAbsLambda: 50
+      minD0: -600
+      minHitRatio: 4e-1
+      minMomentum: 60
+      minNLoops: 0
+      minNStrawHits: 15
+      minPt: 0
+      prescaleUsingD0Phi: false
+      requireCaloCluster: false
+    }
+  }
+
+  tprDeHighPTCFilter: {
+    minNStrawHits: 15
+    module_type: "TimeClusterFilter"
+    requireCaloCluster: false
+    timeClusterCollection: "TTtimeClusterFinder"
+  }
+
+  tprDeHighPKSFilter: {
+    module_type: "KalSeedFilter"
+    kalSeedCollection: "TTKSFDe"
+    KalSeedCuts : [
+      { #cuts for doesntream e-minus
+        fitdirection: 0
+        fitparticle: 11
+        doParticleTypeCheck: true
+        doZPropDirCheck: true
+        maxChi2DOF: 20
+        maxD0: 600
+        maxMomErr: 10
+        maxMomentum: 500
+        maxTanDip: 1000
+        minD0: -600
+        minFitCons: -1
+        minMomentum: 80
+        minNStrawHits: 15
+        minT0: 0
+        minTanDip: 0
+        requireCaloCluster: false
+      },
+      {
+        fitdirection: 0
+        fitparticle: -11
+        doParticleTypeCheck: true
+        doZPropDirCheck: true
+        maxChi2DOF: 20
+        maxD0: 600
+        maxMomErr: 10
+        maxMomentum: 500
+        maxTanDip: 1000
+        minD0: -600
         minFitCons: -1
         minMomentum: 70
         minNStrawHits: 15
@@ -1191,7 +1286,7 @@ TrigAprFilters:{
       maxD0: 600
       maxMomentum: 2000
       maxNLoops: 30
-      minAbsLambda: 140
+      minAbsLambda: 50
       minD0: -600
       minHitRatio: 4e-1
       minMomentum: 80
@@ -1210,7 +1305,7 @@ TrigAprFilters:{
       maxD0: 600
       maxMomentum: 2000
       maxNLoops: 30
-      minAbsLambda: 140
+      minAbsLambda: 50
       minD0: -600
       minHitRatio: 4e-1
       minMomentum: 70
