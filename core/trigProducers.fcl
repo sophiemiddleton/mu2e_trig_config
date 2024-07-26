@@ -167,7 +167,7 @@ TrigTrkProducers : {
   }
 
   TTHelixFinderParams: {
-    @table::TrkHitReco.HelixFinderParams
+    @table::TrkReco.HelixFinderParams
     maxEDepAvg : 0.0025
   }
 }
