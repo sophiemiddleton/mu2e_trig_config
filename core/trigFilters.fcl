@@ -1772,6 +1772,16 @@ TrigCalFilters:{
     diagLevel: 0
     module_type: "CaloClusterCounterFilter"
   }
+  
+  caloHitRecN0SourceFilter: {
+        caloDigiCollection: "CaloDigiMaker"
+        MaxDigiADC: 1e6 // set higher for completeness
+        MinDigiADC: 0 //should we set a minimum
+        MaxNCry: 3// max number of crystals 
+        MinNCry: 1 // min number of crystals
+        diagLevel: 0
+        module_type: "CaloDigiSourceFilter"
+     }
 
 }
 
