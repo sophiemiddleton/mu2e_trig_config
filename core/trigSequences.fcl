@@ -248,6 +248,11 @@ TrigCaloPaths: {
       @sequence::TrigRecoSequences.calReco,
       "caloFastRMCFilter"
    ]
+   caloHitRec_n0Source: [ @sequence::TrigRecoSequences.artFragmentsGen,
+      "caloHitRecn0SourcePS",
+      @sequence::TrigRecoSequences.calPrepareHits,
+      "caloHitRecN0SourceFilter"
+   ]
 
 }
 
