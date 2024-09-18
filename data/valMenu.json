@@ -176,7 +176,7 @@
                                  {"eventMode":"OffSpill", "prescale":1, "streams": [ "cosmics_main", "physics_minBias" ]}]
         },
 
-       "caloHitRec_n0Source":{
+       "caloHitRec_N0Source":{
             "bit" : 500 ,
             "enabled": 1,
             "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":-1, "streams": [ "physics_calo_calib" ]},
