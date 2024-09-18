@@ -202,7 +202,7 @@
         "caloHitRec_N0Source":{
             "bit" : 500 ,
             "enabled": 1,
-            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":-1, "streams": [ "physics_calo_calib" ]},
+            "eventModeConfig" : [{"eventMode":"OnSpill", "prescale":1, "streams": [ "physics_calo_calib" ]},
                                  {"eventMode":"OffSpill", "prescale":10000, "streams": [ "cosmics_main", "physics_calo_calib" ]}] 
        }
 
