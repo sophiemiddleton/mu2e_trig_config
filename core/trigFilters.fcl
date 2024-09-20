@@ -1776,14 +1776,18 @@ TrigCalFilters:{
   }
   
   caloHitRecN0SourceFilter: {
-        caloDigiCollection: "CaloDigiMaker"
-        MaxDigiADC: 1e6 // set higher for completeness
-        MinDigiADC: 0 //should we set a minimum
-        MaxNCry: 3// max number of crystals 
-        MinNCry: 1 // min number of crystals
-        diagLevel: 0
-        module_type: "CaloDigiSourceFilter"
-     }
+      caloDigiCollection: "CaloDigiMaker"
+      maxCaloEnergy: -1
+      maxNCaloDigi: 5000
+      maxNStrawDigi: -1
+      minNCaloDigi: -1
+      minNStrawDigi: -1
+      module_type: "DigiFilter"
+      strawDigiCollection: "notUsed"
+      triggerPath: "minBiasCaloDigiCount"
+      useCaloDigi: true
+      useStrawDigi: false
+   }
 
 }
 
